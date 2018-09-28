@@ -1,0 +1,48 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<meta charset="UTF-8">
+<!-- Example DataTables Card-->
+<div class="card mb-3 mt-3 mr-3 ml-3">
+	 <div class="card-header">
+	   <i class="fa fa-table"></i> Tabela de Alunos</div>
+	 <div class="card-body">
+	   <div class="table-responsive">
+	     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	       <thead>
+	         <tr>
+	           <th>Foto</th>
+	           <th>Nome</th>
+	           <th>E-mail</th>
+	           <th>Ação</th>
+	           <th>#</th>
+	           <th>#</th>
+	         </tr>
+	       </thead>
+	       <tbody>
+				#{list admins, as:'admin'}
+				    <tr>
+				    	<td>
+				    		<img src="@{Admins.userPhoto(admin?.id)}" class="rounded-circle img-fluid" height="100px"  width="80px">
+				    	</td>
+			   			<td>${admin.nomeAdmin}</td>
+			   			<td>${admin.senhaAdmin}</td>
+			   			<td><a class="btn" href="@{Admins.removeAdmin(admin.id)}">Remove</a></td>
+				        <td><a class="btn" href="#">Detalhar</a></td>
+			   		</tr>
+			    #{/list}               
+	       </tbody>
+	       <tfoot>
+	         <tr>
+	           <th>Foto</th>
+	           <th>Nome</th>
+	           <th>E-mail</th>
+	           <th>Ação</th>
+	           <th>#</th>
+	           <th>#</th>
+	         </tr>
+	       </tfoot>
+	     </table>
+	   </div>
+	 </div>
+	 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>

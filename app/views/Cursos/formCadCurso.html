@@ -1,0 +1,202 @@
+#{extends 'main.html' /} #{set title:'Cadastro de Curso' /}
+<meta charset="utf-8">
+<div class="page-title">
+	<div class="title_left">
+		<h3>Cadastro de cursos</h3>
+	</div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Dados do curso</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li> 
+						<!-- <form method="post" action="@{Cursos.pesquisaNome()}">
+							<div class="input-group top_search">
+								<input type="text" class="form-control"	placeholder="Procurar por..." name="nome"> 
+								<span class="input-group-btn">
+									<button class="btn btn-success" style="color: white" type="submit">Ir!</button>
+								</span>
+							</div>
+						</form> -->
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+			<form class="form-horizontal input_mask" enctype="multipart/form-data" method="post" action="@{Cursos.addCurso()}">					
+					<h4 class="text-muted font-13 m-b-30">
+                      Dados do curso.
+                    </h4>
+					<input type="hidden" name="curso.id" value="${curso?.id}">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Nome</span>
+							 	<input id="nomeCurso" name="curso.nomeCurso" value="${curso?.nomeCurso}" type="text" class="form-control" placeholder="Nome do curso" required="required">
+						 	</div>
+						</div>	
+						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Idade mínima</span>
+							 	<input name="curso.idadeMinima" value="${curso?.idadeMinima}" type="number" class="form-control" required="required">
+						 	</div>
+						</div>	
+						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Idade máxima</span>
+							 	<input name="curso.idadeMaxima" value="${curso?.idadeMaxima}" type="number" class="form-control" required="required">
+						 	</div>
+						</div>												
+					</div>	
+					<div class="form-group">
+						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+							<button type="button" class="btn btn-secondary">Cancelar</button>
+							<a class="btn btn-primary" href="@{Cursos.formCadCurso()}">Limpar</a>
+							<button type="submit" class="btn btn-success">Salvar</button>
+							<!-- <input type="file" class="btn btn-success fa fa-upload"> -->
+							#{if curso?.id != null}
+								<a data-toggle="modal" data-target="#excluirCurso" class="btn btn-danger">
+									<span class="fa fa-trash"></span> Excluir
+								</a>
+								<a class="btn btn-primary" target="_blank" href="@{Cursos.imprimir(curso?.id)}">
+									<span class="fa fa-print"></span> Imprimir
+								</a>
+							#{/if}#{else}
+								<button type="button" class="btn btn-danger" disabled="disabled">
+									<span class="fa fa-trash"></span> Excluir
+								</button>
+								<button type="button" class="btn btn-primary" disabled="disabled">
+									<span class="fa fa-print"></span> Imprimir
+								</button>
+							#{/else}  
+						</div>
+					</div>
+					
+				</form>
+				<div class="ln_solid"></div>
+				
+			
+								
+				   <h4 class="text-muted font-13 m-b-30">
+                     Lista de cursos.
+                   </h4>
+                   <table id="datatable" class="table table-striped table-bordered">
+                     <thead>
+                       <tr>
+                         <th>Código</th>
+                         <th>Nome</th>
+                         <th>Idade</th>
+                         <th>Ações</th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                     	#{list cursos, as:'cursoL'}                       
+                        <tr>
+                          <td>${cursoL.id}</td>
+                          <td>${cursoL.nomeCurso}</td>
+                          <td>${cursoL.idadeMinima} - ${cursoL.idadeMaxima}</td>
+                          <td>
+                          	<a href="@{Cursos.detailCurso(cursoL?.id)}" class="btn btn-default btn-sm">Detalhar</a>
+                          </td>
+                        </tr>
+                       #{/list}
+                     </tbody>
+                   </table>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" id="modalCursos" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Resultados de pesquisa</h4>
+      </div>
+      <div class="modal-body">
+		<table class="table table-striped table-bordered">
+	        <thead>
+	          <tr>
+	            <th class="text-center">Código</th>
+	            <th class="text-center">Nome</th>
+	            <th class="text-center">Idade</th>
+	            <th class="text-center">Ações</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	#{list cursos, as:'cursoP'}                       
+	           <tr>
+	             <td class="text-center">${cursoP.id}</td>
+	             <td class="text-center">${cursoP.nomeCurso}</td>
+	             <td class="text-center">${cursoP.idadeMinima} | ${cursoP.idadeMaxima}</td>
+	             <td class="text-center"><a href="@{Cursos.detailCurso(cursoP.id)}" class="btn btn-primary">Detalhar</a></td>
+	           </tr>
+	          #{/list}
+	        </tbody>
+	      </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+         Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-sm" id="excluirCurso" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+		<form method="post">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Confirmar exclusão</h4>
+	      </div>
+	      <div class="modal-body">
+			<h5>Realmente deseja excuir ${curso?.nomeCurso}</h5>
+			<p>Confirme digitando o nome do curso.</p>
+			<input type="text" required="required" id="nomeExclui" class="form-control input-group-sm" placeholder="Digite o nome do curso">
+	      </div>
+	      <div class="modal-footer">
+	      	<a class="btn btn-danger" onclick="verificaNome()">
+				<span class="fa fa-trash"></span> Excluir
+			</a>
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+	         Close</button>
+	      </div>
+		</form>
+    </div>
+  </div>
+</div>
+
+<script>
+	function verificaNome(){
+		var nomeExclui = document.getElementById("nomeExclui");
+		var nomeCurso = document.getElementById("nomeCurso");
+		if(nomeExclui.value == nomeCurso.value){
+			 console.log("Igual");
+			 $(location).attr('href', '@{Cursos.removeCurso(curso?.id)}');
+		}else{
+			alert("Os nome não correspondem");
+		}
+	}
+</script>
+
+#{if cursos?.size() >= 1}
+	<script>
+		$(document).ready(function(){
+			$('#modalCursos').modal('show')			
+		});
+	</script>
+#{/if}

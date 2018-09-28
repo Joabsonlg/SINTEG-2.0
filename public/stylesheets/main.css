@@ -1,0 +1,12 @@
+.has-feedback .form-control {
+    padding-right: 2px;
+}
+
+.input-group {
+    margin-bottom: 0px;
+}
+
+.img-profile{
+	max-height: 127px !important;
+	max-width: 95px !important;
+}

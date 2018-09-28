@@ -1,0 +1,114 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro' /}
+<meta charset="utf-8">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Página de cadastro</h3>
+      </div>
+
+      <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Procurar por...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Ir!</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Página simples</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+			#{form @cadAdmin(), enctype:'multipart/form-data'}
+			  
+			    <div class="row">
+			      <div class="col-md-6">
+			        <label for="exampleInputName">Nome completo</label>
+			        <input class="form-control" value="${admin?.nomeAdmin}" name="admin.nomeAdmin" id="exampleInputName" type="text" placeholder="Nome completo" required>
+			      </div>
+			      <div class="col-md-3">
+			        <label for="exampleInputName">Nome de usuário</label>
+			        <input class="form-control" value="${admin?.nome}" name="admin.nome" id="exampleInputName" type="text" placeholder="Username" required>
+			      </div>
+			      <div class="col-md-3">
+			        <label for="exampleInputName">Data Nasc</label>
+			        <input class="form-control" value="${admin?.dataNascimento}" name="admin.dataNascimento" id="exampleInputName" type="date" required>
+			      </div>
+			      <div class="col-md-3">
+			        <label for="exampleInputName">Email</label>
+			        <input class="form-control" value="${admin?.email}" name="admin.email" id="exampleInputName" type="email" required>
+			      </div>
+			    </div>
+			    <br/>
+			  	<div class="row">
+			       <div class="col-md-4">
+				     <label for="exampleInputEmail1">Senha</label>
+				     <input class="form-control" value="${admin?.senhaAdmin}" name="admin.senhaAdmin" id="exampleInputSenha" type="password" placeholder="******" required>
+				   </div>
+			      	<div class="col-md-4">
+			      		<label>Foto</label>
+			  			<input type="file" name="admin.foto" class="form-control">
+			  		</div>
+			      	<div class="col-md-4">
+			      		<label>Cargo</label>
+			  			<input type="text" name="admin.cargo" value="${admin?.cargo}" class="form-control">
+			  		</div>
+			  	</div>	
+			  	<br/>
+			  	<div class="row">
+			       <div class="col-md-4">
+				     <label for="exampleInputEmail1">Rua</label>
+				     <input class="form-control" value="${admin?.rua}" name="admin.rua" id="exampleInputSenha" type="text" placeholder="Rua ..." required>
+				   </div>
+			      	<div class="col-md-4">
+			      		<label>Cidade</label>
+			  			<input type="text" name="admin.cidade" value="${admin?.cidade}" class="form-control">
+			  		</div>
+			      	<div class="col-md-4">
+			      		<label>Estado</label>
+				        <select name="admin.uf.id" class="form-control">
+							#{list ufs, as:'uf'}
+								<option value=${uf.id}>${uf.nome}</option> 
+							#{/list}
+						</select> 
+			  		</div>
+			  	</div>	
+			  	<br/>
+			  	<div class="row">			  		
+			  		<div class="col-md-12">
+			  			<label></label>
+			  			<input type="submit" class="btn btn-info btn-block" value="Salvar">
+			  		</div>
+			  	</div>
+			  	
+			  	<!-- <div class="input-group">
+				  <span class="input-group-addon" id="basic-addon1">@</span>
+				  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div> -->	  
+			  
+			#{/form}
+			</div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+

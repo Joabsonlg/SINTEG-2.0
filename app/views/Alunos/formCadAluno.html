@@ -1,0 +1,683 @@
+#{extends 'main.html' /} #{set title:'Cadastro de Aluno' /}
+<meta charset="utf-8">
+
+<div class="clearfix"></div>
+
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Dados do aluno</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li> 
+						<form method="post" action="@{Alunos.pesquisaNome()}">
+							<div class="input-group top_search">
+								<input type="text" class="form-control"	placeholder="Procurar por..." name="nome"> 
+								<span class="input-group-btn">
+									<button class="btn btn-success" style="color: white" type="submit">Ir!</button>
+								</span>
+							</div>
+						</form>
+					</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<form class="form-horizontal input_mask" enctype="multipart/form-data" method="post" action="@{Alunos.cadAluno()}">
+					<div class="row">
+						<div class="col-md-10 col-sm-10 col-xs-12 form-group">
+							<div class="row">
+								<div class="col-md-2 col-sm-2 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Código</span>
+									 	<input type="text" name="aluno.id" value="${aluno?.id}" class="form-control" readonly="readonly" required="required">
+								 	</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Nome</span>
+									 	<input id="nomeAluno" type="text" value="${aluno?.nomeAluno}" name="aluno.nomeAluno" class="form-control" placeholder="Nome completo"	required="required">
+								 	</div>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Apelido</span>
+									 	<input type="text" name="aluno.apelido" value="${aluno?.apelido}" class="form-control" placeholder="Nome popular" required="required">
+								 	</div>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Cadastro</span>
+										#{if aluno?.id != null}
+									 		<input type="text" name="aluno.dataCadastro" value="${aluno?.dataCadastro}" class="form-control" readonly="readonly" required="required">
+								 		#{/if}#{else}
+								 			<input type="text" name="aluno.dataCadastro" id="dateAtual" class="form-control" readonly="readonly" required="required">
+								 		#{/else}
+								 	</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
+									 	<input name="aluno.dataNascimento" value="${aluno?.dataNascimento}" type="date" class="form-control"	placeholder="Data nascimento" required="required">
+								 		<span class="input-group-addon">${idade}</span>
+								 	</div>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-12 form-group">	
+									<div class="row">
+										<div class="col-md-4 text-right">
+											<label class="control-label">Sexo: </label>
+										</div>
+										<div class="col-md-8">
+											<p style="padding-top: 5px">
+												#{if aluno?.sexo != null}
+													#{if aluno?.sexo == 'M'}
+														M: <input type="radio" class="flat" checked name="aluno.sexo" id="genderM" value="M" required />
+														- F: <input type="radio" class="flat" name="aluno.sexo" id="genderF" value="F" />
+													#{/if}#{else}
+														M: <input type="radio" class="flat" name="aluno.sexo" id="genderM" value="M" required />
+														- F: <input type="radio" class="flat" checked name="aluno.sexo" id="genderF" value="F" />
+													#{/else}
+												#{/if}#{else}
+													M: <input type="radio" class="flat" name="aluno.sexo" id="genderM" value="M" required />
+													- F: <input type="radio" class="flat" name="aluno.sexo" id="genderF" value="F" />
+												#{/else}							
+											</p>
+										</div>										
+									</div>											
+								</div>							
+								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Natural</span>
+									 	<input type="text" name="aluno.naturalidade" value="${aluno?.naturalidade}" class="form-control" required="required">
+								 	</div>
+								</div>												
+								<div class="col-md-2 col-sm-2 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Uf</span>
+									 	<select id="estado" name="aluno.ufNasc.id" class="form-control" required>
+									    	#{if aluno?.ufNasc?.id != null}
+								        		<option value=${aluno.ufNasc.id}>${aluno.ufNasc.nome}</option> 
+								        	#{/if}
+											#{list ufs, as:'uf'}
+												#{if aluno?.ufNasc?.nome != uf?.nome}
+													<option value=${uf.id}>${uf?.nome}</option>
+												#{/if} 
+											#{/list}
+									 	</select>
+								 	</div>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="col-md-5 col-sm-5 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Pai</span>
+									 	<input type="text" name="aluno.pai" value="${aluno?.pai}" class="form-control" placeholder="Nome completo do pai"	required="required">
+								 	</div>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+									 	<input name="aluno.fone" value="${aluno?.fone}" type="text" class="form-control"	data-inputmask="'mask' : '(99)99999-9999'" placeholder="Fone" required="required">
+								 	</div>
+								</div>
+								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Endereço</span>
+									 	<input type="text" name="aluno.endereco"  value="${aluno?.endereco}" placeholder="Rua..." class="form-control">
+								 	</div>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="col-md-5 col-sm-5 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Mãe</span>
+									 	<input type="text" name="aluno.mae" value="${aluno?.mae}" class="form-control" placeholder="Nome completo da mãe"	required="required">
+								 	</div>
+								</div>
+								<div class="col-md-4 col-sm-3 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">Bairro</span>
+									 	<input type="text" name="aluno.bairro" value="${aluno?.bairro}" class="form-control" placeholder="Bairro">
+								 	</div>
+								</div>
+								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+									<div class="input-group input-group-sm">
+										<span class="input-group-addon">CEP</span>
+									 	<input name="aluno.cep" value="${aluno?.cep}" type="text" class="form-control"	data-inputmask="'mask' : '99999-999'" placeholder="CEP" required="required">
+								 	</div>
+								</div>	
+							</div>						
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12 form-group" style="width: 30px">
+							<div class="input-group input-group-sm">
+								<div class="input-group-text pr-3">
+									#{if aluno?.foto == null}
+										<span class="input-group-addon"><img style="width: 95px; height: 127px;" src="@{'/public/images/avatar.png'}" name="prev"></span>
+									#{/if}#{else}
+										<span class="input-group-addon"><img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></span>
+									#{/else}
+								</div>
+  						        
+						    </div>
+						</div>						
+					</div>					
+					
+					<div class="row">	
+						<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Escolaridade</span>
+						        <select name="aluno.escolaridade.id" class="form-control" required="required">
+									#{if aluno?.escolaridade?.id != null}
+										<option value=${aluno.escolaridade.id}>${aluno.escolaridade.nome}</option>
+									#{/if}#{else}
+										<option value="">Escolher...</option>
+									#{/else}
+									
+									#{list niveis, as:'nivel'}
+										#{if aluno?.escolaridade?.nome != nivel?.nome}
+											<option value=${nivel.id}>${nivel?.nome}</option> 
+										#{/if}
+									#{/list}
+								</select> 
+							</div>	
+						</div>
+						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Cidade</span>
+								#{if aluno?.cidade == null}
+									<input type="text" value="Luís Gomes" name="aluno.cidade" class="form-control">
+								#{/if}#{else}
+									<input type="text" value="${aluno?.cidade}" name="aluno.cidade" class="form-control">
+								#{/else}
+							 	
+						 	</div>
+						</div>											
+						<div class="col-md-2 col-sm-2 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Uf</span>
+						        <select name="aluno.uf.id" class="form-control" required="required">
+						        	#{if aluno?.uf?.id != null}
+						        		<option value=${aluno.uf.id}>${aluno.uf.nome}</option> 
+						        	#{/if}
+									#{list ufs, as:'uf'}
+										#{if aluno?.uf?.nome != uf?.nome}
+											<option value=${uf.id}>${uf?.nome}</option>
+										#{/if} 
+									#{/list}
+								</select> 
+							</div>							  
+						</div>	
+						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">E-mail</span>
+							 	<input name="aluno.emailAluno" value="${aluno?.emailAluno}" type="email" class="form-control" placeholder="exemple@ex.com" required="required">
+						 	</div>
+						</div>									
+					</div>
+
+					<div class="row">	
+						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">RG ou C.N</span>
+							 	<input type="text" name="aluno.rg" value="${aluno?.rg}" placeholder="RG ou Certidão de nascimento" class="form-control">
+						 	</div>
+						</div>			
+											
+						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">CPF</span>
+							 	<input name="aluno.cpf" type="text" class="form-control" value="${aluno?.cpf}"	data-inputmask="'mask' : '999.999.999-99'" placeholder="CPF" required="required">
+						 	</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Observação</span>
+								<textarea class="form-control has-feedback-left" name="aluno.observacao">${aluno?.observacao}</textarea>
+							</div>
+						</div>
+					</div>
+					
+					#{if aluno?.id != null}					
+						<div class="ln_solid"></div>
+						<table id="datatable" class="table table-striped table-bordered">
+		                      <thead>
+		                        <tr>
+		                          <th>Data de matricula</th>
+		                          <th>Curso</th>
+		                          <th>Turma</th>
+		                          <th>Termino</th>
+		                          <th>Motivo</th>
+		                          <th>Certif.</th>
+		                          <th>Ações</th>
+		                        </tr>
+		                      </thead>
+		
+		                      <tbody>	
+		                      	#{if matriculas != null}
+			                      	#{list matriculas, as:'matricula'}	
+										<tr>
+					                    	<td>${matricula.dataMatricula}</td>	
+					                    	<td>${matricula.turma.curso.nomeCurso}</td>
+					                    	<td>${matricula.turma.codigo}</td>
+					                    	<td></td>
+					                    	<td></td>
+					                    	<td></td>
+											<td>
+												<input type="hidden">
+												<a href="@{Alunos.imprimir(matricula?.id)}" target="_blank" class="btn btn-primary btn-sm">
+													<i class="fa fa-print"></i>
+												</a>
+												<a onclick="pegaid(${matricula?.id})" data-toggle="modal" data-target="#excluirMatricula" class="btn btn-danger btn-sm">
+													<span class="fa fa-trash"></span>
+												</a>
+											</td>
+					                	</tr>				 
+									#{/list}
+		                      	#{/if}                      	
+								
+		                      </tbody>
+		                </table>					
+					#{/if}
+					
+					<div class="ln_solid"></div>
+					
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<a class="btn btn-primary" href="@{Alunos.formCadAluno()}"><i class="fa fa-eraser" aria-hidden="true"></i>
+							 Limpar</a>
+							<button type="submit" id="btnSave" class="btn btn-primary"><span class="fa fa-hdd-o"></span> Salvar</button>
+							<!-- <input type="file" class="btn btn-success fa fa-upload"> -->
+							#{if aluno?.id != null}
+								<a data-toggle="modal" data-target="#excluirAluno" class="btn btn-danger">
+									<span class="fa fa-trash"></span> Excluir
+								</a>
+								<a class="btn btn-primary" target="_blank" href="@{Alunos.imprimir(aluno.id)}">
+									<span class="fa fa-print"></span> Imprimir
+								</a>
+								<input type="button" class="btn btn-primary" id="mat" data-toggle="modal" data-target="#matricula" value="Matricula">
+							#{/if}#{else}
+								<button type="button" class="btn btn-danger" disabled="disabled">
+									<span class="fa fa-trash"></span> Excluir
+								</button>
+								<button type="button" class="btn btn-primary" disabled="disabled">
+									<span class="fa fa-print"></span> Imprimir
+								</button>
+								<button type="button" class="btn btn-primary" disabled="disabled">
+									Matricula
+								</button>
+							#{/else}                
+							<label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+			                  <input class="sr-only" type="file" id="inputImage" name="aluno.foto" id="imagem" onchange="previewImagem()">
+			                  <span class="docs-tooltip" data-toggle="tooltip" title="Import image with Blob URLs">
+			                    <span class="fa fa-upload"></span> Foto
+			                  </span>
+			                </label>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+#{if alunos?.size() == 0}
+	
+#{/if}
+		
+<div class="modal fade bs-example-modal-lg" id="teste" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Resultados de pesquisa</h4>
+      </div>
+      <div class="modal-body">
+		<table class="table table-striped table-bordered">
+	        <thead>
+	          <tr>
+	            <th class="text-center">Código</th>
+	            <th class="text-center">Foto</th>
+	            <th class="text-center">Nome</th>
+	            <th class="text-center">E-mail</th>
+	            <th class="text-center">Ações</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	        	#{list alunos, as:'alunoP'}                       
+	           <tr>
+	             <td class="text-center">${alunoP.id}</td>
+	             <td class="text-center"><img alt="Foto" src="@{Alunos.userPhoto(alunoP.id)}" style="width: 40px; height: 60px;"></td>
+	             <td class="text-center">${alunoP.nomeAluno}</td>
+	             <td class="text-center">${alunoP.emailAluno}</td>
+	             <td class="text-center">
+	             	<a href="@{Alunos.detailAluno(alunoP?.id)}" class="btn btn-default btn-sm">Detalhar</a>
+	             </td>
+	           </tr>
+	          #{/list}
+	        </tbody>
+	      </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+         Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade bs-example-modal-sm" id="excluirAluno" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+		<form method="post" action="@{Alunos.removeAluno()}">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Confirmar exclusão</h4>
+	      </div>
+	      <div class="modal-body">
+			<h5>Realmente deseja excuir ${aluno?.nomeAluno}?</h5>
+			<p>Confirme digitando a senha.</p>
+			<input type="hidden" name="id" value="${aluno?.id}">
+			<input type="password" required="required" name="senhaPadrao" class="form-control input-group-sm" placeholder="Digite a senha">
+	      </div>
+	      <div class="modal-footer">
+	      	<input type="submit" class="btn btn-danger" value="Excuir">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+	         Close</button>
+	      </div>
+		</form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="excluirMatricula" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+		<form method="post" action="@{Matriculas.removeMatricula()}">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Confirmar exclusão</h4>
+	      </div>
+	      <div class="modal-body">
+			<h5>Realmente deseja Continuar?</h5>
+			<p>Informe a senha para remover a matricula:</p>
+			<input type="hidden" name="id" id="idM">			
+			<input type="password" name="senhaPadrao" required="required" class="form-control input-group-sm" placeholder="Digite a senha">
+	      </div>
+	      <div class="modal-footer">
+	      	<input type="submit" class="btn btn-danger" value="Excluir">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+	         Close</button>
+	      </div>
+		</form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="matricula" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+		<form name="formulario1" class="form-horizontal input_mask" method="post" action="@{Matriculas.addMatricula()}">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+	        </button>
+	        <h2 class="modal-title" id="myModalLabel">Matricula</h2>
+	      </div>
+	      <div class="modal-body">
+			<div class="row">
+				<input type="hidden" name="matricula.aluno.id" value="${aluno?.id}">
+				<div class="col-md-2 col-sm-2 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+						<!-- #{if matricula?.dataMatricula != null}
+							<input type="date" readonly="readonly" name="matricula.dataMatricula" value="${matricula?.dataMatricula}" class="form-control">
+						#{/if} -->
+						 <input type="text" readonly="readonly" name="matricula.dataMatricula"	data-inputmask="'mask' : '99/99/9999'" id="dateAtual" class="form-control">
+										 	
+				 	</div>
+				</div>
+				<div class="col-md-2 col-sm-2 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+					 	<!-- #{if matricula?.horaMatricula != null}
+							<input type="time" readonly="readonly" name="matricula.horaMatricula" value="${matricula?.horaMatricula}" class="form-control">
+						#{/if} -->
+						<input type="time" readonly="readonly" name="matricula.horaMatricula" id="horaAtual" class="form-control">		
+				 	</div>
+				</div>
+				<div class="col-md-5 col-sm-5 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon">Atendente</span>
+					 	<input name="matricula.atendente" type="text" readonly="readonly" value="${session.get('user')}" class="form-control">
+				 	</div>
+				</div>	
+				<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon">Inicio Aulas</span>
+					 	<input type="text" readonly="readonly" id="inicio" class="form-control">
+				 	</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon">curso</span>						
+					 	<select name="cosa" onchange="cambia()" class="form-control" required="required">
+				        	<option value=0>Escolher...</option>
+							#{list cursos, as:'curso'}								
+								<option value="${curso?.id}">${curso?.nomeCurso}</option>								 
+							#{/list}
+						</select> 
+				 	</div>
+				</div>		
+				<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon">Dias de aula</span>
+					 	<input type="text" id="dias" class="form-control" readonly="readonly">
+				 	</div>
+				</div>		
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon">Turma</span>
+					 	<select class="form-control" id="turma" required="required" name="matricula.turma.id" onchange="infor()">
+							<option value="-">-</option>
+						</select>
+				 	</div>
+				</div>
+				<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon">Horário</span>
+					 	<input type="text" id="horario" class="form-control" required="required" readonly="readonly">
+				 	</div>
+				</div>	
+				<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+					<div class="input-group input-group-sm">
+						<span class="input-group-addon">Vagas disponíveis</span>
+					 	<input type="text" readonly="readonly"  id="vagas" class="form-control" required="required">
+				 	</div>
+				</div>	
+			</div>
+		  </div>
+	      <div class="modal-footer">
+
+	      	<input type="submit" class="btn btn-primary" id="save" value="Salvar">	      	
+			<a class="btn btn-primary">
+				<span class="fa fa-address-card-o"></span> Comprovante
+			</a>
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>Close</button>
+	      </div>
+		</form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+ 	function pegaid(id){
+ 		document.getElementById("idM").value = id;
+ 	}
+ 	/*
+ 	function verificaSenha(idm){
+ 		var senha = document.getElementById("senhaPadrao");
+ 		var idmi = parseInt(idm);
+ 		console.log(typeof idmi === "number");
+		if(senha.value == "senha"){
+			window.location = "@{Matriculas.removeMatricula("idmi")}";
+		}else{
+			alert("Os nome não correspondem");
+		}
+ 	}
+ 
+	function verificaNome(){
+		var nomeExclui = document.getElementById("nomeExclui");
+		var nomeAluno = document.getElementById("nomeAluno");
+		if(nomeExclui.value == nomeAluno.value){
+			 $(location).attr('href', '@{Alunos.removeAluno(aluno?.id)}');
+		}else{
+			alert("Os nome não correspondem");
+		}
+	}
+	*/
+	var data = new Date();
+	var dia = data.getDate();
+	var mes = data.getMonth()+1;
+	var ano = data.getFullYear();
+	var hora = data.getHours();        
+	var min = data.getMinutes();   
+	
+	if(parseInt(mes) < 10){
+		mes = (0+""+mes);
+	}
+
+	if(parseInt(dia) < 10){
+		dia = (0+""+dia);
+	}
+	
+	if(parseInt(hora) < 10){
+		hora = (0+""+hora);
+	}
+	
+	if(parseInt(min) < 10){
+		min = (0+""+min);
+	}
+	
+	var hoje = (dia+"/"+mes+"/"+ano);
+	var hora = (hora+":"+min);
+	document.getElementById("dateAtual").value = hoje;
+	document.getElementById("horaAtual").value = hora;
+	
+	
+	///////////////faer aqui //se o estado da turma for desativada, faz o botão de matricula desativar.
+	
+
+	//#{list matriculas, as:'matricula'}
+		//if(${matricula.turma.estado} == false){
+			//document.getElementById("mat").disabled = true;	
+		//}				
+	//#{/list}
+//</script>
+<script type="text/javascript">
+
+
+			var turmas = new Array();
+			
+			function infor(){
+				var id =  document.getElementById("turma")[document.getElementById("turma").selectedIndex].value;
+				for(i=0; i<turmas.length; i++){
+					if(turmas[i][0] == id){
+						document.getElementById("vagas").value = turmas[i][2];
+						if(turmas[i][2] == 0){
+							document.getElementById("save").disabled = true;
+						}else{
+							document.getElementById("save").disabled = false;
+						}
+						document.getElementById("inicio").value = turmas[i][3];
+						document.getElementById("dias").value = turmas[i][4];
+						document.getElementById("horario").value = turmas[i][5];
+					}
+				}
+			}
+			
+			function cambia(){
+				
+				
+				var cosa;
+				//Se toma el vamor de la "cosa seleccionada"
+				cosa = document.formulario1.cosa[document.formulario1.cosa.selectedIndex].value;
+				//cosa é o id do curso
+				for (i=0; i<turmas.length; i++) {
+					var turma = turmas[i];
+				    for(var j = 0; j < turma.length; j++) {
+						delete turmas[i][j];
+				    }
+				    turmas = turma.filter(Boolean);
+				}
+
+				
+				//se chequea si la "cosa" esta definida
+				if(cosa!=0){
+					#{list turmas, as:'turma'}
+						if(("${turma.curso.id}" == cosa) && ("${turma.estado}" == "false")){								
+							turmas.push(["${turma.id}","${turma.codigo}","${turma.vagasTurma}","${turma.dataInicioAula}","${turma.diasAulas}","${turma.horaInicioAula} - ${turma.horaFimAula}"]);
+						}				
+					#{/list}
+								
+					
+					turmas = turmas.filter(Boolean);
+					
+					//se calcula el numero de cosas
+					num_opts = turmas.length;
+					
+										
+					
+					//marco el numero de opt en el select
+					document.getElementById("turma").length = num_opts;
+					//para cada opt del array, la pongo en el select
+					for(i=0; i<num_opts; i++){	
+						document.getElementById("turma").options[i].value = turmas[i][0];
+						document.getElementById("turma").options[i].text = turmas[i][1];
+						//document.getElementById("vagas").value = turmas[0][2];
+					}
+					
+					if(num_opts == 0){
+						//si no habia ninguna opt seleccionada, elimino las cosas del select
+						document.getElementById("turma").length = 1;
+						//ponemos un guion en la unica opt que he dejado
+						document.getElementById("turma").options[0].value="-";
+						document.getElementById("turma").options[0].text="-";
+						document.getElementById("vagas").value = "-";
+						document.getElementById("inicio").value = "-";
+						document.getElementById("horario").value = "-";
+						document.getElementById("dias").value = "-";
+						document.getElementById("turma").options[0].selected = true;
+					}else{
+						infor();
+					}
+				}else{
+					//si no habia ninguna opt seleccionada, elimino las cosas del select
+					document.getElementById("turma").length = 1;
+					//ponemos un guion en la unica opt que he dejado
+					document.getElementById("turma").options[0].value="-";
+					document.getElementById("turma").options[0].text="-";
+					document.getElementById("vagas").value = "-";
+					document.getElementById("inicio").value = "-";
+					document.getElementById("horario").value = "-";
+					document.getElementById("dias").value = "-";
+					document.getElementById("turma").options[0].selected = true;
+				}
+			}			
+				
+		</script>

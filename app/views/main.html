@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="author" content="Joabson Arley">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>#{get 'title' /}</title>
+		<!-- Bootstrap -->
+		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet">
+		<!-- Font Awesome -->
+		<link href="@{'/public/vendors/font-awesome/css/font-awesome.min.css'}"	rel="stylesheet">
+		<!-- NProgress -->
+		<link href="@{'/public/vendors/nprogress/nprogress.css'}" rel="stylesheet">
+		<!-- Custom Theme Style -->
+		<link href="@{'/public/build/css/custom.min.css'}" rel="stylesheet">
+		<!-- Style local -->
+		<link href="@{'/public/stylesheets/main.css'}" rel="stylesheet">
+				
+		<!-- Datatables -->
+	    <link href="@{'/public/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css'}" rel="stylesheet">
+	    <link href="@{'/public/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'}" rel="stylesheet">
+	    <link href="@{'/public/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css'}" rel="stylesheet">
+	    <link href="@{'/public/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'}" rel="stylesheet">
+	    <link href="@{'/public/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css'}" rel="stylesheet">
+		<script type="text/javascript">
+			function SelecionaCurso(){
+			    var sDados = document.getElementById('EscolheCurso').value;
+		        var aDados = sDados.split('|');
+				if( sDados != '' ) {
+			        //document.getElementById('sala').value = aDados[1];
+			        document.getElementById('curso').value = aDados[0];
+			    } else {
+			       // document.getElementById('sala').value = '';
+			        document.getElementById('curso').value = '';
+			    }
+		        //console.log(aDados[1]);
+			}
+		</script>
+	</head>
+	<body class="nav-md">
+		<div class="container body">
+			<div class="main_container">
+				<div class="col-md-3 left_col">
+					<div class="left_col scroll-view">
+						<div class="navbar nav_title" style="border: 0;">
+							<a href="#" class="site_title"><img alt="logo" width="40px"	class="img-fluid" src="@{'/public/images/png.png'}"> <span>SINTEG!</span></a>
+						</div>
+	
+						<div class="clearfix"></div>
+	
+						<!-- menu profile quick info -->
+						<div class="profile clearfix">
+							<div class="profile_pic">
+								#{if session.get("type") == "Admin"}
+									<img style="padding: 1px" src="@{Admins.userPhoto(session.get('userId'))}" alt="..." class="img-circle profile_img">
+								#{/if}#{else}
+									<img style="padding: 1px" src="@{Professores.userPhoto(session.get('userId'))}" alt="..." class="img-circle profile_img">
+								#{/else}
+							</div>
+							<div class="profile_info">
+								<span>Bem vindo,</span>
+								<h2>${session.get("user")}</h2>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<!-- /menu profile quick info -->
+	
+						<br />
+	
+						<!-- sidebar menu -->
+						<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+							<div class="menu_section">
+								<h3>Geral</h3>
+								<ul class="nav side-menu">
+									#{if get('title') == "Home"}
+										<li class="active">
+									#{/if}#{else}
+										<li>
+									#{/else} 
+										<a href="@{Admins.inicio()}"><i	class="fa fa-home"></i> Home</a>
+									</li> 
+									#{if get('title') == "Ajuda"}
+										<li class="active">
+									#{/if}#{else}
+										<li>
+									#{/else} 
+										<a href="@{Application.ajuda()}"><i class="fa fa-info"></i> Ajuda</a>
+									</li>
+								</ul>
+							</div>
+							<div class="menu_section">
+								<h3>Ensino</h3>
+								<ul class="nav side-menu">
+									#{if get('title') == "Cadastro de Aluno"}
+										<li class="active">
+									#{/if}#{else}
+										<li>
+									#{/else} 
+										<a><i class="fa fa-graduation-cap"></i> Aluno <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a href="@{Alunos.formCadAluno()}">Cadastro</a></li>
+											<li><a href="@{Alunos.listAluno()}">Lista</a></li>
+										</ul>
+									</li>
+									<li><a><i class="fa fa-user"></i> Professor <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a href="@{Professores.formCadProfessor()}">Cadastro</a></li>
+											<li><a href="@{Professores.listProfessor()}">Lista</a></li>
+										</ul>
+									</li>
+									<li><a><i class="fa fa-group"></i> Turma <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a href="@{Turmas.formCadTurma()}">Cadastro</a></li>
+											<li><a href="@{Turmas.listTurma()}">Lista</a></li>
+										</ul>
+									</li>
+									<li><a><i class="fa fa-book"></i> Curso <span class="fa fa-chevron-down"></span></a>
+										<ul class="nav child_menu">
+											<li><a href="@{Cursos.formCadCurso()}">Cadastro</a></li>
+											<li><a href="@{Cursos.listCurso()}">Lista</a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- /sidebar menu -->
+	
+						<!-- /menu footer buttons -->
+						<div class="sidebar-footer hidden-small">
+							<a data-toggle="tooltip" data-placement="top" title="Configurações"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> </a> 
+							<a data-toggle="tooltip" data-placement="top" href="@{Login.logout()}" title="Sair"> <span class="fa fa-sign-out" aria-hidden="true"></span> </a> 
+							<a data-toggle="tooltip" data-placement="top" title="Perfil"><span class="glyphicon fa fa-user" aria-hidden="true"></span> </a> 
+							<a data-placement="top" title="Ajuda" data-toggle="tooltip" data-target=".bs-example-modal-sm"> <span class="fa fa-info" aria-hidden="true"></span> </a>
+						</div>
+						<!-- /menu footer buttons -->
+					</div>
+				</div>
+	
+				<!-- top navigation -->
+				<div class="top_nav">
+					<div class="nav_menu">
+						<nav>
+							<div class="nav toggle">
+								<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+							</div>
+	
+							<ul class="nav navbar-nav navbar-right">
+								<li class="">
+									<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+										#{if session.get("type") == "Admin"}
+											<img src="@{Admins.userPhoto(session.get('userId'))}" alt="Foto">${session.get("user")}
+										#{/if}#{else}
+											<img src="@{Professores.userPhoto(session.get('userId'))}" alt="Foto">${session.get("user")}
+										#{/else}
+										<span class=" fa fa-angle-down"></span>
+									</a>
+									<ul class="dropdown-menu dropdown-usermenu pull-right">
+										#{if get('title') == "Perfil"}
+											<li class="active">
+										#{/if}#{else}
+											<li>
+										#{/else} 
+											<a href="@{Admins.perfil(session.get('userId'))}"> Perfil</a>
+										</li>
+										#{if get('title') == "Settings"}
+											<li class="active">
+										#{/if}#{else}
+											<li>
+										#{/else} 
+											<a href="@{Admins.configuracoes()}"> <!-- <span class="badge bg-red pull-right">50%</span> --> <span>Configurações</span> </a>	
+										</li>
+										<li><a href="javascript:;">Help</a></li>
+										<li><a data-toggle="modal" data-target="#logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+									</ul>
+								</li>
+	
+								<li role="presentation" class="dropdown">
+									<a id="compose" class="dropdown-toggle info-number" type="button"> 
+										<i class="fa fa-envelope-o"></i> 
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<!-- /top navigation -->
+				
+				<!-- page content -->
+		        <div class="right_col" role="main">
+		        	<div class="">
+						#{if flash.success}
+						<div class="alert alert-success" style="margin-top: 55px" role="alert">
+							<p>${flash.success.raw()}</p>
+						</div>
+						#{/if} #{if flash.error}
+						<div class="alert alert-danger" style="margin-top: 55px" role="alert">
+							<p>${flash.error.raw()}</p>
+						</div>
+						#{/if} 
+						#{doLayout /}						
+						<!-- footer content -->
+						<footer>
+							<div class="pull-right">
+								SINTEG - Sistema integrado de gestão by <a href="http://www.funffec.org.br" target="_blank">Funffec</a>
+							</div>
+							<div class="clearfix"></div>
+						</footer>
+						<!-- /footer content -->
+					</div>
+				</div>
+				<!-- /page content -->
+			</div>
+			
+			<!-- Small modal -->
+			<div class="modal fade bs-example-modal-sm" id="logout" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+		
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel2">Encerrar Sessão</h4>
+						</div>
+						<div class="modal-body">
+							<h4>Está pronto para sair?</h4>
+							<p>Aperte o botão sair se deseja encerrar a sessão.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							<a type="button" href="@{Login.logout()}" class="btn btn-primary">Sair</a>
+						</div>		
+					</div>
+				</div>
+			</div>
+			<!-- /modals -->
+	<!-- compose -->
+    <div class="compose col-md-6 col-xs-12">
+      <div class="compose-header">
+        Nova messagem
+        <button type="button" class="close compose-close">
+          <span>×</span>
+        </button>
+      </div>
+
+      <div class="compose-body">
+      	<form action="@{Inbox.enviar()}" method="post">
+      		<section style="padding: 5px">
+				<div class="form-group">
+				   <label for="de">E-mail para:</label>
+				   <input class="form-control #{ifError 'email.para'} is-invalid#{/ifError}" 
+				   id="de" type="email" value="${flash['email.para']}" name="para" required="required">
+				   #{ifError 'email.para'}
+	        	   <div class="invalid-feedback">#{error 'email.para' /}</div>  	   		 
+	        	   #{/ifError}
+				</div>
+				
+				<div class="form-group">
+				   <label for="assunto">Assunto:</label>
+				   <input class="form-control #{ifError 'email.assunto'} is-invalid#{/ifError}" 
+				   id="assunto" type="text" value="${flash['email.assunto']}" name="assunto" required="required">
+				   #{ifError 'email.assunto'}
+	        	   <div class="invalid-feedback">#{error 'email.assunto' /}</div>  	   		 
+	        	   #{/ifError}
+				</div>
+				
+				<div class="form-group">
+					<label for="mensagem">Mensagem:</label>
+					<textarea name="mensagem" class="form-control" id="editor" required="required"></textarea>
+				 </div>
+				 
+			    <div class="compose-footer">
+					<button id="send" class="btn btn-sm btn-dark" type="submit">Enviar</button>
+				</div>
+			</section>
+		</form>
+    </div>
+    <!-- /compose -->		
+		</div>
+		
+		<!-- jQuery -->
+		<script src="@{'/public/vendors/jquery/dist/jquery.min.js'}"></script>
+		<!-- Bootstrap -->
+		<script src="@{'/public/vendors/bootstrap/dist/js/bootstrap.min.js'}"></script>
+		<!-- FastClick -->
+		<script src="@{'/public/vendors/fastclick/lib/fastclick.js'}"></script>
+		<!-- NProgress -->
+		<script src="@{'/public/vendors/nprogress/nprogress.js'}"></script>
+	
+		<!-- jquery.inputmask -->
+		<script	src="@{'/public/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js'}"></script>
+	
+		<!-- Custom Theme Scripts -->
+		<script src="@{'/public/build/js/custom.min.js'}"></script>
+		
+		<!-- Datatables -->
+		<script src="@{'/public/vendors/datatables.net/js/jquery.dataTables.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-buttons/js/dataTables.buttons.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-buttons/js/buttons.flash.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-buttons/js/buttons.html5.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-buttons/js/buttons.print.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-responsive/js/dataTables.responsive.min.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js'}"></script>
+		<script src="@{'/public/vendors/datatables.net-scroller/js/dataTables.scroller.min.js'}"></script>
+		<script src="@{'/public/vendors/jszip/dist/jszip.min.js'}"></script>
+		<script src="@{'/public/vendors/pdfmake/build/pdfmake.min.js'}"></script>
+		<script src="@{'/public/vendors/pdfmake/build/vfs_fonts.js'}"></script>
+		    
+	    <!-- bootstrap-wysiwyg -->
+	    <script src="@{'/public/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js'}"></script>
+	    <script src="@{'/public/vendors/jquery.hotkeys/jquery.hotkeys.js'}"></script>
+	    <script src="@{'/public/vendors/google-code-prettify/src/prettify.js'}"></script>
+
+		<script>
+			function t(){
+			console.log(document.getElementById("editor").value);}
+		
+			function previewImagem(){
+				var imagem = document.querySelector("input[name='aluno.foto']").files[0];
+				var preview = document.querySelector('img[name=prev]');
+				
+				var reader = new FileReader();
+				
+				reader.onloadend = function () {
+					preview.src = reader.result;
+				}
+				
+				if(imagem){
+					reader.readAsDataURL(imagem);
+				}else{
+					preview.src = "";
+				}
+			}
+			function previewProf(){
+				var imagem = document.querySelector("input[name='professor.foto']").files[0];
+				var preview = document.querySelector('img[name=prev]');
+				
+				var reader = new FileReader();
+				
+				reader.onloadend = function () {
+					preview.src = reader.result;
+				}
+				
+				if(imagem){
+					reader.readAsDataURL(imagem);
+				}else{
+					preview.src = "";
+				}
+			}
+		</script>
+		
+		#{if get('title') == "Cadastro de Aluno"}		
+			#{if alunos?.size() >= 1}
+				<script>
+					$(document).ready(function(){
+						$('#teste').modal('show')			
+					});
+				</script>
+			#{/if}
+		#{/if}
+		#{get 'moreScripts' /}
+	
+	</body>
+</html>
