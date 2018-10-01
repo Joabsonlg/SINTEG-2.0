@@ -264,13 +264,12 @@
 					                    	<td></td>
 					                    	<td></td>
 					                    	<td></td>
-											<td>
-												<input type="hidden">
-												<a href="@{Alunos.imprimir(matricula?.id)}" target="_blank" class="btn btn-primary btn-sm">
-													<i class="fa fa-print"></i>
+											<td class="text-center">
+												<a href="@{Alunos.comprovante(matricula?.id)}" target="_blank" class="btn btn-primary btn-sm">
+													<i class="fa fa-print"> Compr.</i>
 												</a>
 												<a onclick="pegaid(${matricula?.id})" data-toggle="modal" data-target="#excluirMatricula" class="btn btn-danger btn-sm">
-													<span class="fa fa-trash"></span>
+													<span class="fa fa-trash"> Excluir</span>
 												</a>
 											</td>
 					                	</tr>				 
@@ -293,8 +292,8 @@
 								<a data-toggle="modal" data-target="#excluirAluno" class="btn btn-danger">
 									<span class="fa fa-trash"></span> Excluir
 								</a>
-								<a class="btn btn-primary" target="_blank" href="@{Alunos.imprimir(aluno.id)}">
-									<span class="fa fa-print"></span> Imprimir
+								<a class="btn btn-primary" target="_blank" href="@{Alunos.historico(aluno.id)}">
+									<span class="fa fa-print"></span> Histórico
 								</a>
 								<input type="button" class="btn btn-primary" id="mat" data-toggle="modal" data-target="#matricula" value="Matricula">
 							#{/if}#{else}

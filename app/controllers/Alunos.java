@@ -154,9 +154,15 @@ public class Alunos extends Controller{
 		renderTemplate("Alunos/formCadAluno.html", turmas, cursos, matriculas, idade, aluno, ufs, niveis);
 	}
 	
-	public static void imprimir(Long id) {
+	public static void comprovante(Long id) {
 		Matricula matricula = Matricula.findById(id);
 		render(matricula);
+	}
+	
+	public static void historico(Long id) {
+		Aluno aluno = Aluno.findById(id);
+		List<Matricula> matriculas = Matricula.find("aluno.id = ?", id).fetch();
+		render(aluno, matriculas);
 	}
 	
 	public static void userPhoto(long id) { 

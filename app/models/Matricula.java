@@ -31,6 +31,9 @@ public class Matricula extends Model{
 	@Temporal(TemporalType.DATE)
 	public Date termino;
 	
+	@Temporal(TemporalType.DATE)
+	public Date entregaC;
+	
 	public String motivo;
 	
 	public String atendente;
