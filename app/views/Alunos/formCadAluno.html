@@ -295,6 +295,9 @@
 								<a class="btn btn-primary" target="_blank" href="@{Alunos.historico(aluno.id)}">
 									<span class="fa fa-print"></span> Histórico
 								</a>
+								<a class="btn btn-primary" target="_blank" href="@{Alunos.ficha(aluno.id)}">
+									<span class="fa fa-print"></span> Ficha
+								</a>
 								<input type="button" class="btn btn-primary" id="mat" data-toggle="modal" data-target="#matricula" value="Matricula">
 							#{/if}#{else}
 								<button type="button" class="btn btn-danger" disabled="disabled">

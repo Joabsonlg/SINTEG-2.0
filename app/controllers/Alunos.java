@@ -159,6 +159,11 @@ public class Alunos extends Controller{
 		render(matricula);
 	}
 	
+	public static void ficha(Long id) {
+		Aluno aluno = Aluno.findById(id);
+		render(aluno);
+	}
+	
 	public static void historico(Long id) {
 		Aluno aluno = Aluno.findById(id);
 		List<Matricula> matriculas = Matricula.find("aluno.id = ?", id).fetch();
