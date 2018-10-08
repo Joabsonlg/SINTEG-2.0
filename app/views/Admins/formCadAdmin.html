@@ -33,7 +33,7 @@
           </div>
           <div class="x_content">
 			#{form @cadAdmin(), enctype:'multipart/form-data'}
-			  
+			  	<input type="hidden" value="${admin?.id}" name="admin.id">
 			    <div class="row">
 			      <div class="col-md-6">
 			        <label for="exampleInputName">Nome completo</label>

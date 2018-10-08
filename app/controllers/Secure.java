@@ -11,7 +11,12 @@ public class Secure extends Controller{
 		if(session.get("user") == null) {
 			Login.login();
 		}else {
-			
+			String perfil = session.get("type");
+			Administrador adminAnnotation =	getActionAnnotation(Administrador.class);
+			if (adminAnnotation != null && !"Admin".equals(perfil)) {
+				flash.error("Acesso restrito aos administradores do sistema");
+				Admins.inicio();
+			}
 		}
 	}
 }

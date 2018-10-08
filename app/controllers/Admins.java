@@ -7,7 +7,7 @@ import play.*;
 import play.data.validation.Required;
 import play.mvc.*;
 
-//@With(Secure.class)
+@With(Secure.class)
 public class Admins extends Controller{
 	
 	public static void autenticationAdmin(@Required String email, @Required String senha) {
@@ -32,6 +32,12 @@ public class Admins extends Controller{
     	render();
     }
 
+    
+    public static void detailAdmin(Long id) {
+    	List<Uf> ufs = Uf.findAll();
+    	Admin admin = Admin.findById(id);
+    	renderTemplate("Admins/formCadAdmin.html", admin, ufs);
+    }
 	
 	public static void formCadAdmin(Admin admin) {
 		List<Uf> ufs = Uf.findAll();

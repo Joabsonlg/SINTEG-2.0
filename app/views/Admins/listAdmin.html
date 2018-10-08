@@ -27,7 +27,7 @@
 			   			<td>${admin.nomeAdmin}</td>
 			   			<td>${admin.senhaAdmin}</td>
 			   			<td><a class="btn" href="@{Admins.removeAdmin(admin.id)}">Remove</a></td>
-				        <td><a class="btn" href="#">Detalhar</a></td>
+				        <td><a class="btn" href="@{Admins.detailAdmin(admin.id)}">Detalhar</a></td>
 			   		</tr>
 			    #{/list}               
 	       </tbody>

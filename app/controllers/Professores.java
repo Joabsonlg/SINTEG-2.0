@@ -26,12 +26,14 @@ public class Professores extends Controller{
 		render();
 	}
 	
+	@Administrador
 	public static void formCadProfessor() {
 		List<Uf> ufs = Uf.findAll();
 		List<Escolaridade> niveis = Escolaridade.findAll();
 		render(ufs, niveis);
 	}
 	
+	@Administrador
 	public static void cadProfessor(Professor professor) {
 		professor.save();
 		detailProfessor(professor.id);
@@ -42,15 +44,18 @@ public class Professores extends Controller{
 		render(professores);
 	}
 	
+	@Administrador
 	public static void removeProfessor(Long id) {
 		Professor prof = Professor.findById(id);
 		prof.delete();
 		listProfessor();
 	}
 	
+	@Administrador
 	public static void editProfessor(Long id) {
 
 	}
+	
 	
 	public static void detailProfessor(Long id) {			
 		Professor professor = Professor.findById(id);

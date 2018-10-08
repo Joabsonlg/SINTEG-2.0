@@ -17,23 +17,89 @@
 			<div class="main_container">
 				<div class="row">
 					<div class="col-md-11">
-						<div class="col-md-2">
-							Código: ${aluno.id}
+						<div class="row">
+							<div class="col-md-2">
+								Código: ${aluno.id}
+							</div>
+							<div class="col-md-4">
+								Nome: ${aluno.nomeAluno}
+							</div>
+							<div class="col-md-3">
+								Apelido: ${aluno.apelido}
+							</div>
+							<div class="col-md-3">
+								Cadastro: ${aluno.dataCadastro}
+							</div>
 						</div>
-						<div class="col-md-4">
-							Nome: ${aluno.nomeAluno}
+						<div class="row">
+							<div class="col-md-3">
+								Data Nascimento: ${aluno.dataNascimento}
+							</div>
+							<div class="col-md-3">
+								Sexo: #{if aluno.sexo == "M"}
+										Masculino
+									  #{/if}#{else}
+									  	Feminino
+									  #{/else}
+							</div>
+							<div class="col-md-3">
+								Natural: ${aluno.naturalidade}
+							</div>
+							<div class="col-md-3">
+								UF: ${aluno.uf.nome}
+							</div>
 						</div>
-						<div class="col-md-3">
-							Apelido: ${aluno.apelido}
+						<div class="row">						
+							<div class="col-md-5">
+								Pai: ${aluno.pai}
+							</div>
+							<div class="col-md-3">
+								Fone: ${aluno.fone}
+							</div>
+							<div class="col-md-4">
+								Endereço: ${aluno.endereco}
+							</div>
 						</div>
-						<div class="col-md-3">
-							Cadastro: ${aluno.dataCadastro}
-						</div>
+						<div class="row">						
+							<div class="col-md-5">
+								Mãe: ${aluno.mae}
+							</div>
+							<div class="col-md-4">
+								Bairro: ${aluno.bairro}
+							</div>
+							<div class="col-md-3">
+								CEP: ${aluno.cep}
+							</div>
+						</div>		
 					</div>
 					<div class="col-md-1">
-						<span class="input-group-addon">
-							<img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;">
-						</span>					
+						<!-- <span class="input-group-addon"><img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></span> -->
+					</div>
+				</div>
+							
+				<div class="row">
+					<div class="col-md-3">
+						Escolaridade: ${aluno.escolaridade.nome}
+					</div>
+					<div class="col-md-4">
+						Cidade: ${aluno.cidade}
+					</div>
+					<div class="col-md-2">
+						UF: ${aluno.uf.nome}
+					</div>
+					<div class="col-md-3">
+						Email: ${aluno.emailAluno}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						RG: ${aluno.rg}
+					</div>
+					<div class="col-md-3">
+						CPF: ${aluno.cpf}
+					</div>
+					<div class="col-md-6">
+						Observação: ${aluno.observacao}
 					</div>
 				</div>
 			</div>
