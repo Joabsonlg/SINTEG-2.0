@@ -7,7 +7,7 @@ import play.*;
 import play.data.validation.Required;
 import play.mvc.*;
 
-@With(Secure.class)
+//@With(Secure.class)
 public class Admins extends Controller{
 	
 	public static void autenticationAdmin(@Required String email, @Required String senha) {
