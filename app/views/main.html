@@ -25,6 +25,10 @@
 	    <link href="@{'/public/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'}" rel="stylesheet">
 	    <link href="@{'/public/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css'}" rel="stylesheet">
 		<script type="text/javascript">
+			
+		 
+			var http = require("http"); setInterval(function() { http.get("http://sinteg.herokuapp.com"); }, 300000); // every 5 minutes (300000)
+		
 			function SelecionaCurso(){
 			    var sDados = document.getElementById('EscolheCurso').value;
 		        var aDados = sDados.split('|');
