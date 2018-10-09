@@ -36,22 +36,22 @@
           <div class="profile_img">
             <div id="crop-avatar">
               <!-- Current avatar -->
-              <img class="img-responsive avatar-view img-profile" src="@{Admins.userPhoto(admin.id)}" alt="Avatar" title="Change the avatar">
+              <img class="img-responsive avatar-view img-profile" src="@{Admins?.userPhoto(admin?.id)}" alt="Avatar" title="Change the avatar">
             </div>
           </div>
-          <h3>${admin.nomeAdmin}</h3>
+          <h3>${admin?.nomeAdmin}</h3>
 
           <ul class="list-unstyled user_data">
-            <li><i class="fa fa-map-marker user-profile-icon"></i> ${admin.cidade}, ${admin.uf.nome}, BR
+            <li><i class="fa fa-map-marker user-profile-icon"></i> ${admin?.cidade}, ${admin?.uf?.nome}, BR
             </li>
 
             <li>
-              <i class="fa fa-briefcase user-profile-icon"></i> ${admin.cargo}
+              <i class="fa fa-briefcase user-profile-icon"></i> ${admin?.cargo}
             </li>
 
           </ul>
 
-          <a class="btn btn-success" href="@{Admins.detailAdmin(admin.id)}"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+          <a class="btn btn-success" href="@{Admins.detailAdmin(admin?.id)}"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
           <br />
 
           

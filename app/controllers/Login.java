@@ -31,7 +31,7 @@ public class Login extends Controller{
 				login();
 			}
 		}else {
-			session.put("user", admin.nome);
+			session.put("user", admin.username);
 			session.put("userId", admin.id);
 			session.put("type", "Admin");
 			Admins.inicio();
