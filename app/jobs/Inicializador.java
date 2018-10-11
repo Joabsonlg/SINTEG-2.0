@@ -17,6 +17,7 @@ public class Inicializador extends Job{
 			sala.save();
 		}
 		
+		
 	}
 	
 }
