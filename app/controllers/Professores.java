@@ -35,8 +35,11 @@ public class Professores extends Controller{
 	
 	//@Administrador
 	public static void cadProfessor(Professor professor) {
-		professor.save();
-		detailProfessor(professor.id);
+		if(professor.save() != null) {
+			detailProfessor(professor.id);
+		}else {
+			formCadProfessor();
+		}
 	}
 	
 	public static void listProfessor() {

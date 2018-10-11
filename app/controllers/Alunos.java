@@ -34,9 +34,13 @@ public class Alunos extends Controller{
 				formCadAluno();
 			}
 		}*/
-		aluno.save();
-		flash.success(aluno.nomeAluno + " registrado");
-		detailAluno(aluno.id);
+		if(aluno.save() != null) {
+			flash.success(aluno.nomeAluno + " registrado");
+			detailAluno(aluno.id);
+		}else {
+			flash.error("Erro ao cadastrar.");
+			formCadAluno();
+		}
 	}
 	
 	static boolean jaExiste(Aluno aluno) {

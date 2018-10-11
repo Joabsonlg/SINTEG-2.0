@@ -53,8 +53,13 @@ public class Turmas extends Controller{
 		}
 		turma.horaInicioAula = inicio;
 		turma.horaFimAula = fim;
-		turma.save();
-		listTurma();
+		if(turma.save() != null) {
+			flash.success("Turma salva");
+			formCadTurma();
+		}else {
+			flash.error("Erro ao cadatrar");
+			formCadTurma();
+		}
 	}
 	
 	/*static boolean dataValida(Turma turma) {
