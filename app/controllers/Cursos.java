@@ -15,8 +15,12 @@ public class Cursos extends Controller{
 	}
 	
 	public static void addCurso(Curso curso) {
-		curso.save();
-		listCurso();
+		if (curso.save() != null) {
+			flash.success("Curso cadastrado.");
+		}else {
+			flash.error("Erro ao cadastrar.");
+		}
+		formCadCurso();
 	}
 	
 	public static void listCurso() {
