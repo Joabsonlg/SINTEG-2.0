@@ -17,7 +17,7 @@ public class Login extends Controller{
 	}
 	
 	public static void autenticar(String username, String pass) {
-		Admin admin = Admin.find("nome = ? and senhaAdmin = ?", username, pass).first();
+		Admin admin = Admin.find("username = ? and senhaAdmin = ?", username, pass).first();
 		if(admin == null) {
 			Professor prof = Professor.find("username = ? and senha = ?", username, pass).first();
 			if(prof != null) {
