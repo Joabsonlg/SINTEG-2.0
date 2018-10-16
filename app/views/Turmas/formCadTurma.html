@@ -125,31 +125,6 @@
 
 					<div class="ln_solid"></div>
 					
-					#{if matriculas != null}
-					<table id="datatable" class="table table-striped table-bordered">
-		                      <thead>
-		                        <tr>
-		                          <th>Codigo</th>
-		                          <th>Nome</th>
-		                          <th>Matricula</th>
-		                          <th>Observação</th>
-		                        </tr>
-		                      </thead>
-		
-		                      <tbody>	
-						#{list matriculas, as:'matricula'}	
-							<tr>
-		                    	<td>${matricula.aluno.id}</td>	
-		                    	<td>${matricula.aluno.nomeAluno}</td>
-		                    	<td>${matricula.dataMatricula}</td>
-		                    	<td>${matricula.observacao}</td>
-		                	</tr>				 
-						#{/list}
-						</tbody>
-		                </table>	
-						<div class="ln_solid"></div>
-				#{/if}
-				
 					
 					<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -165,7 +140,7 @@
 										Encerrar turma
 									</button>
 								#{/else}
-								<a data-toggle="modal" data-target="#excluirCurso" class="btn btn-danger">
+								<a data-toggle="modal" data-target="#excluirTurma" class="btn btn-danger">
 									<span class="fa fa-trash"></span> Excluir
 								</a>
 								<a class="btn btn-primary" target="_blank" href="@{Cursos.imprimir(curso?.id)}">
@@ -228,8 +203,8 @@
 </div>
 
 
-<div class="modal fade bs-example-modal-sm" id="excluirCurso" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade bs-example-modal-sm" id="excluirTurma" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
 		<form method="post">
 	      <div class="modal-header">
@@ -238,12 +213,12 @@
 	        <h4 class="modal-title" id="myModalLabel">Confirmar exclusão</h4>
 	      </div>
 	      <div class="modal-body">
-			<h5>Realmente deseja excuir ${curso?.nomeCurso}</h5>
-			<p>Confirme digitando o nome do curso.</p>
-			<input type="text" required="required" id="nomeExclui" class="form-control input-group-sm" placeholder="Digite o nome do curso">
+			<h5>Realmente deseja excuir ${turma?.codigo}</h5>
+			<p>Confirme digitando a senha para exclusão.</p>
+			<input type="password" required="required" id="senhaExclui" class="form-control input-group-sm" placeholder="Digite a senha">
 	      </div>
 	      <div class="modal-footer">
-	      	<a class="btn btn-danger" onclick="verificaNome()">
+	      	<a class="btn btn-danger" onclick="verificaTurma()">
 				<span class="fa fa-trash"></span> Excluir
 			</a>
 	        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
@@ -255,12 +230,11 @@
 </div>
 
 <script>
-	function verificaNome(){
-		var nomeExclui = document.getElementById("nomeExclui");
-		var nomeCurso = document.getElementById("nomeCurso");
-		if(nomeExclui.value == nomeCurso.value){
+	function verificaTurma(){
+		var senhaExclui = document.getElementById("senhaExclui");
+		if(senhaExclui.value == "admin"){
 			 console.log("Igual");
-			 $(location).attr('href', '@{Cursos.removeCurso(curso?.id)}');
+			 $(location).attr('href', '@{Turmas.removeTurma(turma?.id)}');
 		}else{
 			alert("Os nome não correspondem");
 		}

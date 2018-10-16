@@ -55,7 +55,7 @@ public class Turmas extends Controller{
 		turma.horaFimAula = fim;
 		if(turma.save() != null) {
 			flash.success("Turma salva");
-			formCadTurma();
+			detailTurma(turma.id);
 		}else {
 			flash.error("Erro ao cadatrar");
 			formCadTurma();
@@ -105,7 +105,7 @@ public class Turmas extends Controller{
 	public static void removeTurma(Long id) {
 		Turma t = Turma.findById(id);
 		t.delete();
-		listTurma();
+		formCadTurma();
 	}
 	
 	public static void editTurma(Turma turma) {

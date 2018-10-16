@@ -31,7 +31,7 @@ public class Cursos extends Controller{
 	public static void removeCurso(Long id) {
 		Curso c = Curso.findById(id);
 		c.delete();
-		listCurso();
+		formCadCurso();
 	}
 	
 	public static void pesquisaNome(String nome) {

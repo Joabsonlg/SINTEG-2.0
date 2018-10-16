@@ -119,7 +119,7 @@
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-									 	<input name="aluno.fone" value="${aluno?.fone}" type="text" class="form-control"	data-inputmask="'mask' : '(99)99999-9999'" placeholder="Fone" required="required">
+									 	<input name="aluno.fone" value="${aluno?.fone}" type="text" class="form-control"	data-inputmask="'mask' : '(99)99999-9999'" placeholder="Fone">
 								 	</div>
 								</div>
 								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
@@ -212,7 +212,7 @@
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">E-mail</span>
-							 	<input name="aluno.emailAluno" value="${aluno?.emailAluno}" type="email" class="form-control" placeholder="exemple@ex.com" required="required">
+							 	<input name="aluno.emailAluno" value="${aluno?.emailAluno}" type="email" class="form-control" placeholder="exemple@ex.com">
 						 	</div>
 						</div>									
 					</div>
@@ -377,7 +377,7 @@
 
 
 <div class="modal fade bs-example-modal-sm" id="excluirAluno" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
 		<form method="post" action="@{Alunos.removeAluno()}">
 	      <div class="modal-header">
