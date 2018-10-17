@@ -39,7 +39,7 @@ public class Matriculas extends Controller {
 		
 		Turma turma = Turma.findById(matricula.turma.id);
 		matricula.atendente = session.get("user");
-		//pegaData(matricula);
+		pegaData(matricula);
 		matricula.save();
 		diminuirVaga(turma);
 		//verEstado(turma);

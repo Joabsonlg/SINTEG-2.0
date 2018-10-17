@@ -51,7 +51,7 @@ public class Professores extends Controller{
 	public static void removeProfessor(Long id) {
 		Professor prof = Professor.findById(id);
 		prof.delete();
-		listProfessor();
+		formCadProfessor();
 	}
 	
 	//@Administrador

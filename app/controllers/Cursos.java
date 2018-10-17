@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.*;
+import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
 
@@ -14,7 +15,14 @@ public class Cursos extends Controller{
 		render(cursos);
 	}
 	
-	public static void addCurso(Curso curso) {
+	public static void addCurso(@Valid Curso curso) {
+		
+		if(validation.hasErrors()) {
+			params.flash(); // add http parameters to the flash scope
+			validation.keep(); // keep the errors for the next request
+			formCadCurso();
+		}
+		
 		if (curso.save() != null) {
 			flash.success("Curso cadastrado.");
 		}else {
@@ -31,6 +39,7 @@ public class Cursos extends Controller{
 	public static void removeCurso(Long id) {
 		Curso c = Curso.findById(id);
 		c.delete();
+		flash.success("Curso removido.");
 		formCadCurso();
 	}
 	

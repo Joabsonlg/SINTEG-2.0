@@ -93,7 +93,6 @@ public class Login extends Controller{
 	
 	public static void logout() {
 		session.clear();
-		System.out.println("logout");
 		login();
 	}
 }

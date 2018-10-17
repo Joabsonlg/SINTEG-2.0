@@ -32,38 +32,37 @@
 					<h4 class="text-muted font-13 m-b-30">
                       Dados do curso.
                     </h4>
-					<input type="hidden" name="curso.id" value="${curso?.id}">
+					<input type="hidden" name="curso.id" value="${(flash['curso.id'])? flash['curso.id'] :curso?.id}">
 					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-12 form-group">
+						<div class="col-md-8 col-sm-6 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">Nome</span>
-							 	<input id="nomeCurso" name="curso.nomeCurso" value="${curso?.nomeCurso}" type="text" class="form-control" placeholder="Nome do curso" required="required">
+							 	<input id="nomeCurso" name="curso.nomeCurso" value="${(flash['curso.nomeCurso'])? flash['curso.nomeCurso'] :curso?.nomeCurso}" type="text" class="form-control" placeholder="Nome do curso" required="required">
 						 	</div>
-						</div>	
+						</div>
+						<div class="col-md-4">
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon">Carga horária</span>
+								<input name="curso.cargaHoraria" value="${(flash['curso.cargaHoraria'])? flash['curso.cargaHoraria'] :curso?.cargaHoraria}" type="number" class="form-control" required="required">
+							</div><br/>
+						</div>												
+					</div>	
+					<div class="row">
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">Idade mínima</span>
-							 	<input name="curso.idadeMinima" value="${curso?.idadeMinima}" type="number" class="form-control" required="required">
+							 	<input name="curso.idadeMinima" value="${(flash['curso.idadeMinima'])? flash['curso.idadeMinima'] : curso?.idadeMinima}" type="number" class="form-control" required="required">
 						 	</div>
 						</div>	
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">Idade máxima</span>
-							 	<input name="curso.idadeMaxima" value="${curso?.idadeMaxima}" type="number" class="form-control" required="required">
+							 	<input name="curso.idadeMaxima" value="${(flash['curso.idadeMaxima'])? flash['curso.idadeMaxima'] : curso?.idadeMaxima}" type="number" class="form-control" required="required">
 						 	</div>
-						</div>												
-					</div>	
-					<div class="row">
-						<div class="col-md-12">
-							<div class="input-group input-group-sm">
-								<span class="input-group-addon">Carga horária</span>
-								<input name="curso.cargaHoraria" value="${curso?.cargaHoraria}" type="number" class="form-control" required="required">
-							</div><br/>
-						</div>
-					</div>
+						</div>	
+					</div><br/>
 					<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-							<button type="button" class="btn btn-secondary">Cancelar</button>
 							<a class="btn btn-primary" href="@{Cursos.formCadCurso()}">Limpar</a>
 							<button type="submit" class="btn btn-success">Salvar</button>
 							<!-- <input type="file" class="btn btn-success fa fa-upload"> -->
@@ -71,7 +70,7 @@
 								<a data-toggle="modal" data-target="#excluirCurso" class="btn btn-danger">
 									<span class="fa fa-trash"></span> Excluir
 								</a>
-								<a class="btn btn-primary" target="_blank" href="@{Cursos.imprimir(curso?.id)}">
+								<a class="btn btn-primary" target="_blank" href="#">
 									<span class="fa fa-print"></span> Imprimir
 								</a>
 							#{/if}#{else}
@@ -86,10 +85,7 @@
 					</div>
 					
 				</form>
-				<div class="ln_solid"></div>
-				
-			
-								
+				<div class="ln_solid"></div>							
 				   <h4 class="text-muted font-13 m-b-30">
                      Lista de cursos.
                    </h4>
@@ -163,7 +159,7 @@
 
 
 <div class="modal fade bs-example-modal-sm" id="excluirCurso" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
 		<form method="post">
 	      <div class="modal-header">
@@ -173,11 +169,11 @@
 	      </div>
 	      <div class="modal-body">
 			<h5>Realmente deseja excuir ${curso?.nomeCurso}</h5>
-			<p>Confirme digitando o nome do curso.</p>
-			<input type="text" required="required" id="nomeExclui" class="form-control input-group-sm" placeholder="Digite o nome do curso">
+			<p>Confirme digitando a senha para exclusão.</p>
+			<input type="password" required="required" id="nomeExclui" class="form-control input-group-sm">
 	      </div>
 	      <div class="modal-footer">
-	      	<a class="btn btn-danger" onclick="verificaNome()">
+	      	<a class="btn btn-danger" onclick="verificaCurso()">
 				<span class="fa fa-trash"></span> Excluir
 			</a>
 	        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
@@ -188,15 +184,80 @@
   </div>
 </div>
 
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2><i class="fa fa-bell"></i> Notifications <small>Styled & Custom notifications</small></h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                  <p>Regular notifications</p>
+                  <button class="btn btn-default source" onclick="new PNotify({
+                                  title: 'Regular Success',
+                                  text: 'That thing that you were trying to do worked!',
+                                  type: 'success',
+                                  styling: 'bootstrap3'
+                              });">Success</button>
+
+                  <button class="btn btn-default source" onclick="new PNotify({
+                                  title: 'New Thing',
+                                  text: 'Just to let you know, something happened.',
+                                  type: 'info',
+                                  styling: 'bootstrap3'
+                              });">Info</button>
+
+                  <button class="btn btn-default source" onclick="new PNotify({
+                                  title: 'Regular Notice',
+                                  text: 'Check me out! I\'m a notice.',
+                                  styling: 'bootstrap3'
+                              });">Notice</button>
+
+                  <button class="btn btn-default source" onclick="new PNotify({
+                                  title: 'Oh No!',
+                                  text: 'Something terrible happened.',
+                                  type: 'error',
+                                  styling: 'bootstrap3'
+                              });">Error</button>
+
+                  <button class="btn btn-default source" onclick="new PNotify({
+                                  title: 'Oh No!',
+                                  text: 'Something terrible happened.',
+                                  type: 'info',
+                                  styling: 'bootstrap3',
+                                  addclass: 'dark'
+                              });">Dark</button>
+
+
+                  <hr />
+                </div>
+              </div>
+            </div>
+
 <script>
-	function verificaNome(){
+	function verificaCurso(){
 		var nomeExclui = document.getElementById("nomeExclui");
-		var nomeCurso = document.getElementById("nomeCurso");
-		if(nomeExclui.value == nomeCurso.value){
+		if(nomeExclui.value == "admin"){
 			 console.log("Igual");
 			 $(location).attr('href', '@{Cursos.removeCurso(curso?.id)}');
 		}else{
-			alert("Os nome não correspondem");
+			alert("Senha incorreta");
 		}
 	}
 </script>
