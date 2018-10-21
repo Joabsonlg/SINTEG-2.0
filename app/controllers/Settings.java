@@ -7,6 +7,7 @@ import play.mvc.With;
 @Administrador
 public class Settings extends Controller{
 	
+	@Administrador
 	public static void index() {
 		render();
 	}

@@ -1,3 +1,18 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+aluno.rg = RG
+aluno.nomeAluno = Nome
+aluno.emailAluno = E-mail
+aluno.apelido = Apelido
+aluno.cpf = CPF
+aluno.dataNascimento = Data de nascimento
+aluno.naturalidade = Naturalidade
+aluno.pai = Pai
+aluno.mae = Mãe
+aluno.endereco = Endereço
+aluno.bairro = Bairro
+aluno.cep = CEP
+aluno.escolaridade = Escolaridade
+validation.required = %s is required
+validation.match = Invalid %s

@@ -23,6 +23,12 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
+				#{ifErrors}
+				   <h4>Oops…</h4>				 
+				   #{errors}
+				       <li>${error}</li>
+				   #{/errors}
+				#{/ifErrors}
 				<form class="form-horizontal input_mask" enctype="multipart/form-data" method="post" action="@{Alunos.cadAluno()}">
 					<div class="row">
 						<div class="col-md-10 col-sm-10 col-xs-12 form-group">
@@ -30,28 +36,28 @@
 								<div class="col-md-2 col-sm-2 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Código</span>
-									 	<input type="text" name="aluno.id" value="${aluno?.id}" class="form-control" readonly="readonly" required="required">
+									 	<input type="text" name="aluno.id" value="${(flash['aluno.id'] != null)? flash['aluno.id'] : aluno?.id}" class="form-control" readonly="readonly">
 								 	</div>
 								</div>
 								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Nome</span>
-									 	<input id="nomeAluno" type="text" value="${aluno?.nomeAluno}" name="aluno.nomeAluno" class="form-control" placeholder="Nome completo"	required="required">
+									 	<input id="nomeAluno" type="text" value="${(flash['aluno.nomeAluno'] != null)? flash['aluno.nomeAluno'] : aluno?.nomeAluno}" name="aluno.nomeAluno" class="form-control" placeholder="Nome completo">
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Apelido</span>
-									 	<input type="text" name="aluno.apelido" value="${aluno?.apelido}" class="form-control" placeholder="Nome popular" required="required">
+									 	<input type="text" name="aluno.apelido" value="${(flash['aluno.apelido'] != null)? flash['aluno.apelido'] : aluno?.apelido}" class="form-control" placeholder="Nome popular">
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Cadastro</span>
 										#{if aluno?.id != null}
-									 		<input type="text" name="aluno.dataCadastro" value="${aluno?.dataCadastro}" class="form-control" readonly="readonly" required="required">
+									 		<input type="text" name="aluno.dataCadastro" value="${(flash['aluno.dataCadastro'] != null)? flash['aluno.dataCadastro'] : aluno?.dataCadastro}" class="form-control" readonly="readonly">
 								 		#{/if}#{else}
-								 			<input type="text" name="aluno.dataCadastro" id="dateAtual" class="form-control" readonly="readonly" required="required">
+								 			<input type="text" name="aluno.dataCadastro" id="dateAtual" class="form-control" readonly="readonly">
 								 		#{/else}
 								 	</div>
 								</div>
@@ -60,7 +66,7 @@
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
-									 	<input name="aluno.dataNascimento" value="${aluno?.dataNascimento}" type="date" class="form-control"	placeholder="Data nascimento" required="required">
+									 	<input name="aluno.dataNascimento" value="${(flash['aluno.dataNascimento'] != null)? flash['aluno.dataNascimento'] : aluno?.dataNascimento}" type="date" class="form-control"	placeholder="Data nascimento">
 								 		<span class="input-group-addon">${idade}</span>
 								 	</div>
 								</div>
@@ -90,7 +96,7 @@
 								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Natural</span>
-									 	<input type="text" name="aluno.naturalidade" value="${aluno?.naturalidade}" class="form-control" required="required">
+									 	<input type="text" name="aluno.naturalidade" value="${(flash['aluno.naturalidade'] != null)? flash['aluno.naturalidade'] : aluno?.naturalidade}" class="form-control">
 								 	</div>
 								</div>												
 								<div class="col-md-2 col-sm-2 col-xs-12 form-group">
@@ -113,19 +119,19 @@
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Pai</span>
-									 	<input type="text" name="aluno.pai" value="${aluno?.pai}" class="form-control" placeholder="Nome completo do pai"	required="required">
+									 	<input type="text" name="aluno.pai" value="${(flash['aluno.pai'] != null)? flash['aluno.pai'] : aluno?.pai}" class="form-control" placeholder="Nome completo do pai">
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-									 	<input name="aluno.fone" value="${aluno?.fone}" type="text" class="form-control"	data-inputmask="'mask' : '(99)99999-9999'" placeholder="Fone">
+									 	<input name="aluno.fone" value="${(flash['aluno.fone'] != null)? flash['aluno.fone'] : aluno?.fone}" type="text" class="form-control"	data-inputmask="'mask' : '(99)99999-9999'" placeholder="Fone">
 								 	</div>
 								</div>
 								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Endereço</span>
-									 	<input type="text" name="aluno.endereco"  value="${aluno?.endereco}" placeholder="Rua..." class="form-control">
+									 	<input type="text" name="aluno.endereco"  value="${(flash['aluno.endereco'] != null)? flash['aluno.endereco'] : aluno?.endereco}" placeholder="Rua..." class="form-control">
 								 	</div>
 								</div>	
 							</div>
@@ -133,19 +139,19 @@
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Mãe</span>
-									 	<input type="text" name="aluno.mae" value="${aluno?.mae}" class="form-control" placeholder="Nome completo da mãe"	required="required">
+									 	<input type="text" name="aluno.mae" value="${(flash['aluno.mae'] != null)? flash['aluno.mae'] : aluno?.mae}" class="form-control" placeholder="Nome completo da mãe">
 								 	</div>
 								</div>
 								<div class="col-md-4 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Bairro</span>
-									 	<input type="text" name="aluno.bairro" value="${aluno?.bairro}" class="form-control" placeholder="Bairro">
+									 	<input type="text" name="aluno.bairro" value="${(flash['aluno.bairro'] != null)? flash['aluno.bairro'] : aluno?.bairro}" class="form-control" placeholder="Bairro">
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">CEP</span>
-									 	<input name="aluno.cep" value="${aluno?.cep}" type="text" class="form-control"	data-inputmask="'mask' : '99999-999'" placeholder="CEP" required="required">
+									 	<input name="aluno.cep" value="${(flash['aluno.cep'] != null)? flash['aluno.cep'] : aluno?.cep}" type="text" class="form-control"	data-inputmask="'mask' : '99999-999'" placeholder="CEP">
 								 	</div>
 								</div>	
 							</div>						
@@ -168,7 +174,7 @@
 						<div class="col-md-4 col-sm-4 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">Escolaridade</span>
-						        <select name="aluno.escolaridade.id" class="form-control" required="required">
+						        <select name="aluno.escolaridade.id" class="form-control">
 									#{if aluno?.escolaridade?.id != null}
 										<option value=${aluno.escolaridade.id}>${aluno.escolaridade.nome}</option>
 									#{/if}#{else}
@@ -189,7 +195,7 @@
 								#{if aluno?.cidade == null}
 									<input type="text" value="Luís Gomes" name="aluno.cidade" class="form-control">
 								#{/if}#{else}
-									<input type="text" value="${aluno?.cidade}" name="aluno.cidade" class="form-control">
+									<input type="text" value="${(flash['aluno.cidade'] != null)? flash['aluno.cidade'] : aluno?.cidade}" name="aluno.cidade" class="form-control">
 								#{/else}
 							 	
 						 	</div>
@@ -197,7 +203,7 @@
 						<div class="col-md-2 col-sm-2 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">Uf</span>
-						        <select name="aluno.uf.id" class="form-control" required="required">
+						        <select name="aluno.uf.id" class="form-control">
 						        	#{if aluno?.uf?.id != null}
 						        		<option value=${aluno.uf.id}>${aluno.uf.nome}</option> 
 						        	#{/if}
@@ -212,7 +218,7 @@
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">E-mail</span>
-							 	<input name="aluno.emailAluno" value="${aluno?.emailAluno}" type="email" class="form-control" placeholder="exemple@ex.com">
+							 	<input name="aluno.emailAluno" value="${(flash['aluno.emailAluno'] != null)? flash['aluno.emailAluno'] : aluno?.emailAluno}" type="email" class="form-control" placeholder="exemple@ex.com">
 						 	</div>
 						</div>									
 					</div>
@@ -221,14 +227,14 @@
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">RG ou C.N</span>
-							 	<input type="text" name="aluno.rg" value="${aluno?.rg}" placeholder="RG ou Certidão de nascimento" class="form-control">
+							 	<input type="text" name="aluno.rg" value="${(flash['aluno.rg'] != null)? flash['aluno.rg'] : aluno?.rg}" placeholder="RG ou Certidão de nascimento" class="form-control">
 						 	</div>
 						</div>			
 											
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">CPF</span>
-							 	<input name="aluno.cpf" type="text" class="form-control" value="${aluno?.cpf}"	data-inputmask="'mask' : '999.999.999-99'" placeholder="CPF" required="required">
+							 	<input name="aluno.cpf" type="text" class="form-control" value="${(flash['aluno.cpf'] != null)? flash['aluno.cpf'] : aluno?.cpf}"	data-inputmask="'mask' : '999.999.999-99'" placeholder="CPF">
 						 	</div>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12 form-group">

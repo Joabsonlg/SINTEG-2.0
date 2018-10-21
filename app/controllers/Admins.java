@@ -28,6 +28,7 @@ public class Admins extends Controller{
     	render(admin);
     }
     
+    @Administrador
     public static void configuracoes() {
     	render();
     }
@@ -39,16 +40,19 @@ public class Admins extends Controller{
     	renderTemplate("Admins/formCadAdmin.html", admin, ufs);
     }
 	
+    @Administrador
 	public static void formCadAdmin(Admin admin) {
 		List<Uf> ufs = Uf.findAll();
 		render(ufs);
 	}
 	
+	@Administrador
 	public static void cadAdmin(Admin admin) {
 		admin.save();
 		listAdmin();
 	}
 	
+	@Administrador
 	public static void removeAdmin(Long id){
 		Admin admin = Admin.findById(id);
 		admin.delete();

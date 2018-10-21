@@ -10,6 +10,7 @@ import java.util.Set;
 
 import models.*;
 import play.*;
+import play.data.validation.Valid;
 import play.db.jpa.Blob;
 import play.mvc.*;
 
@@ -26,14 +27,14 @@ public class Alunos extends Controller{
 		render(ufs, niveis);
 	}
 	
-	public static void cadAluno(Aluno aluno, String up) throws ParseException {
-		//pegaData(aluno);
-		/*if(up == null) {
-			if(jaExiste(aluno) == true) {
-				flash.error("Já existe um aluno com esses dados.");
-				formCadAluno();
-			}
+	public static void cadAluno(@Valid Aluno aluno) throws ParseException {
+		
+		/*if(validation.hasErrors()) {
+			params.flash(); // add http parameters to the flash scope
+			validation.keep(); // keep the errors for the next request
+			formCadAluno();
 		}*/
+		
 		if(aluno.save() != null) {
 			flash.success(aluno.nomeAluno + " registrado");
 			detailAluno(aluno.id);
@@ -41,6 +42,7 @@ public class Alunos extends Controller{
 			flash.error("Erro ao cadastrar.");
 			formCadAluno();
 		}
+		
 	}
 	
 	static boolean jaExiste(Aluno aluno) {
