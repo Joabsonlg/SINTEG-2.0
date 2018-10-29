@@ -42,20 +42,20 @@
 								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Nome</span>
-									 	<input id="nomeAluno" type="text" value="${(flash['aluno.nomeAluno'] != null)? flash['aluno.nomeAluno'] : aluno?.nomeAluno}" name="aluno.nomeAluno" class="form-control" placeholder="Nome completo">
+									 	<input id="nomeAluno" type="text" value="${(flash['aluno.nomeAluno'] != null)? flash['aluno.nomeAluno'] : aluno?.nomeAluno}" name="aluno.nomeAluno" class="form-control" placeholder="Nome completo" required>
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Apelido</span>
-									 	<input type="text" name="aluno.apelido" value="${(flash['aluno.apelido'] != null)? flash['aluno.apelido'] : aluno?.apelido}" class="form-control" placeholder="Nome popular">
+									 	<input type="text" name="aluno.apelido" value="${(flash['aluno.apelido'] != null)? flash['aluno.apelido'] : aluno?.apelido}" class="form-control" placeholder="Nome popular" required>
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Cadastro</span>
 										#{if aluno?.id != null}
-									 		<input type="text" name="aluno.dataCadastro" value="${(flash['aluno.dataCadastro'] != null)? flash['aluno.dataCadastro'] : aluno?.dataCadastro}" class="form-control" readonly="readonly">
+									 		<input type="text" name="aluno.dataCadastro" value="${(flash['aluno.dataCadastro'] != null)? flash['aluno.dataCadastro'] : aluno?.dataCadastro}" class="form-control" readonly="readonly" required>
 								 		#{/if}#{else}
 								 			<input type="text" name="aluno.dataCadastro" id="dateAtual" class="form-control" readonly="readonly">
 								 		#{/else}
@@ -66,7 +66,7 @@
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
-									 	<input name="aluno.dataNascimento" value="${(flash['aluno.dataNascimento'] != null)? flash['aluno.dataNascimento'] : aluno?.dataNascimento}" type="date" class="form-control"	placeholder="Data nascimento">
+									 	<input name="aluno.dataNascimento" value="${(flash['aluno.dataNascimento'] != null)? flash['aluno.dataNascimento'] : aluno?.dataNascimento}" type="date" class="form-control"	placeholder="Data nascimento" required>
 								 		<span class="input-group-addon">${idade}</span>
 								 	</div>
 								</div>
@@ -96,7 +96,7 @@
 								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Natural</span>
-									 	<input type="text" name="aluno.naturalidade" value="${(flash['aluno.naturalidade'] != null)? flash['aluno.naturalidade'] : aluno?.naturalidade}" class="form-control">
+									 	<input type="text" name="aluno.naturalidade" value="${(flash['aluno.naturalidade'] != null)? flash['aluno.naturalidade'] : aluno?.naturalidade}" class="form-control" required>
 								 	</div>
 								</div>												
 								<div class="col-md-2 col-sm-2 col-xs-12 form-group">
@@ -119,7 +119,7 @@
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Pai</span>
-									 	<input type="text" name="aluno.pai" value="${(flash['aluno.pai'] != null)? flash['aluno.pai'] : aluno?.pai}" class="form-control" placeholder="Nome completo do pai">
+									 	<input type="text" name="aluno.pai" value="${(flash['aluno.pai'] != null)? flash['aluno.pai'] : aluno?.pai}" class="form-control" placeholder="Nome completo do pai" required>
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
@@ -131,7 +131,7 @@
 								<div class="col-md-4 col-sm-4 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Endereço</span>
-									 	<input type="text" name="aluno.endereco"  value="${(flash['aluno.endereco'] != null)? flash['aluno.endereco'] : aluno?.endereco}" placeholder="Rua..." class="form-control">
+									 	<input type="text" name="aluno.endereco"  value="${(flash['aluno.endereco'] != null)? flash['aluno.endereco'] : aluno?.endereco}" placeholder="Rua..." class="form-control" required>
 								 	</div>
 								</div>	
 							</div>
@@ -139,19 +139,19 @@
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Mãe</span>
-									 	<input type="text" name="aluno.mae" value="${(flash['aluno.mae'] != null)? flash['aluno.mae'] : aluno?.mae}" class="form-control" placeholder="Nome completo da mãe">
+									 	<input type="text" name="aluno.mae" value="${(flash['aluno.mae'] != null)? flash['aluno.mae'] : aluno?.mae}" class="form-control" placeholder="Nome completo da mãe" required>
 								 	</div>
 								</div>
 								<div class="col-md-4 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">Bairro</span>
-									 	<input type="text" name="aluno.bairro" value="${(flash['aluno.bairro'] != null)? flash['aluno.bairro'] : aluno?.bairro}" class="form-control" placeholder="Bairro">
+									 	<input type="text" name="aluno.bairro" value="${(flash['aluno.bairro'] != null)? flash['aluno.bairro'] : aluno?.bairro}" class="form-control" placeholder="Bairro" required>
 								 	</div>
 								</div>
 								<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 									<div class="input-group input-group-sm">
 										<span class="input-group-addon">CEP</span>
-									 	<input name="aluno.cep" value="${(flash['aluno.cep'] != null)? flash['aluno.cep'] : aluno?.cep}" type="text" class="form-control"	data-inputmask="'mask' : '99999-999'" placeholder="CEP">
+									 	<input name="aluno.cep" value="${(flash['aluno.cep'] != null)? flash['aluno.cep'] : aluno?.cep}" type="text" class="form-control"	data-inputmask="'mask' : '99999-999'" placeholder="CEP" required>
 								 	</div>
 								</div>	
 							</div>						
@@ -195,7 +195,7 @@
 								#{if aluno?.cidade == null}
 									<input type="text" value="Luís Gomes" name="aluno.cidade" class="form-control">
 								#{/if}#{else}
-									<input type="text" value="${(flash['aluno.cidade'] != null)? flash['aluno.cidade'] : aluno?.cidade}" name="aluno.cidade" class="form-control">
+									<input type="text" value="${(flash['aluno.cidade'] != null)? flash['aluno.cidade'] : aluno?.cidade}" name="aluno.cidade" class="form-control" required>
 								#{/else}
 							 	
 						 	</div>
@@ -218,7 +218,7 @@
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">E-mail</span>
-							 	<input name="aluno.emailAluno" value="${(flash['aluno.emailAluno'] != null)? flash['aluno.emailAluno'] : aluno?.emailAluno}" type="email" class="form-control" placeholder="exemple@ex.com">
+							 	<input name="aluno.emailAluno" value="${(flash['aluno.emailAluno'] != null)? flash['aluno.emailAluno'] : aluno?.emailAluno}" type="email" class="form-control" placeholder="exemple@ex.com" required>
 						 	</div>
 						</div>									
 					</div>
@@ -227,14 +227,14 @@
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">RG ou C.N</span>
-							 	<input type="text" name="aluno.rg" value="${(flash['aluno.rg'] != null)? flash['aluno.rg'] : aluno?.rg}" placeholder="RG ou Certidão de nascimento" class="form-control">
+							 	<input type="text" name="aluno.rg" value="${(flash['aluno.rg'] != null)? flash['aluno.rg'] : aluno?.rg}" placeholder="RG ou Certidão de nascimento" class="form-control" required>
 						 	</div>
 						</div>			
 											
 						<div class="col-md-3 col-sm-3 col-xs-12 form-group">
 							<div class="input-group input-group-sm">
 								<span class="input-group-addon">CPF</span>
-							 	<input name="aluno.cpf" type="text" class="form-control" value="${(flash['aluno.cpf'] != null)? flash['aluno.cpf'] : aluno?.cpf}"	data-inputmask="'mask' : '999.999.999-99'" placeholder="CPF">
+							 	<input name="aluno.cpf" type="text" class="form-control" value="${(flash['aluno.cpf'] != null)? flash['aluno.cpf'] : aluno?.cpf}"	data-inputmask="'mask' : '999.999.999-99'" placeholder="CPF" required>
 						 	</div>
 						</div>
 						<div class="col-md-6 col-sm-6 col-xs-12 form-group">
@@ -271,6 +271,7 @@
 					                    	<td></td>
 					                    	<td></td>
 											<td class="text-center">
+												<input type="button" class="btn btn-primary btn-sm" id="mat" data-toggle="modal" data-target="#matricula" value="Detalhar">
 												<a href="@{Alunos.comprovante(matricula?.id)}" target="_blank" class="btn btn-primary btn-sm">
 													<i class="fa fa-print"> Compr.</i>
 												</a>
