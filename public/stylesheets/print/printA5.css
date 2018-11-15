@@ -1,0 +1,38 @@
+* {
+    background:transparent !important;
+    color:#000 !important;
+    text-shadow:none !important;
+    filter:none !important;
+    -ms-filter:none !important;
+}
+    
+body {
+    margin:0;
+    padding:0;
+    line-height: 1.4em;
+    font: 10pt serif;
+	color: #000;
+}
+
+.row{
+	margin-top: 0.25cm;
+}
+    
+@page {
+    margin: 0.5cm;
+    size: A5;
+}
+
+nav, footer, video, audio, object, embed { 
+    display:none; 
+}
+
+.wrap { 
+    width: 100%; 
+    margin: 0; 
+    float: none !important; 
+}
+
+.no-print{
+    display: none;
+}

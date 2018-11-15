@@ -8,9 +8,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Ficha</title>
 		<!-- Bootstrap -->
-		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet">
-		<!-- Custom Theme Style -->
-		<link href="@{'/public/build/css/custom.min.css'}" rel="stylesheet">
+		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="all">
+		<link href="@{'/public/stylesheets/print/printA5.css'}" rel="stylesheet" media="print">
 	</head>
 	<body onload="window.print()" style="background-color: white;">	
 		<div class="container body" style="">
@@ -73,7 +72,7 @@
 						</div>		
 					</div>
 					<div class="col-md-1">
-						<!-- <span class="input-group-addon"><img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></span> -->
+						<span class="input-group-addon"><img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></span> 
 					</div>
 				</div>
 							

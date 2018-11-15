@@ -160,7 +160,7 @@ public class Alunos extends Controller{
 		renderTemplate("Alunos/formCadAluno.html", turmas, cursos, matriculas, idade, aluno, ufs, niveis);
 	}
 	
-	public static void comprovante(Long id) {
+	public static void comprovante(Long id) throws ParseException {
 		Matricula matricula = Matricula.findById(id);
 		render(matricula);
 	}

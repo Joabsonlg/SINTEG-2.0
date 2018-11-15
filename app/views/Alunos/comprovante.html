@@ -8,9 +8,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Comprovante de matricula</title>
 		<!-- Bootstrap -->
-		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet">
-		<!-- Custom Theme Style -->
-		<link href="@{'/public/build/css/custom.min.css'}" rel="stylesheet">
+		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="all">
+		<link href="@{'/public/stylesheets/print/printA5.css'}" rel="stylesheet" media="print">
 		<script type="text/javascript">
 			meses = new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
 			semana = new Array("Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado");
@@ -29,36 +28,30 @@
 	</head>
 	<body onload="window.print()" style="background-color: white">	
 		<div class="container body" style="margin-top: 140px">
-			<div class="main_container">
+			<div class="main_container text-uppercase">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 text-uppercase">
 						Código: ${matricula.aluno.id}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 text-uppercase">
 						Nome: ${matricula.aluno.nomeAluno}
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 text-uppercase">
 						${matricula.aluno.endereco}
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						Bairro: ${matricula.aluno.bairro}
-					</div>
-					<div class="col-md-6">
-						${matricula.aluno.cidade}-${matricula.aluno.uf.nome}
+						${matricula.aluno.bairro} &nbsp &nbsp &nbsp ${matricula.aluno.cidade}-${matricula.aluno.uf.nome}
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						Cep: ${matricula.aluno.cep}
-					</div>
-					<div class="col-md-6">
-						Fone: ${matricula.aluno.fone}
+						Cep: ${matricula.aluno.cep} &nbsp &nbsp &nbsp Fone: ${matricula.aluno.fone}
 					</div>
 				</div>
 				<div class="row">
@@ -78,14 +71,9 @@
 				</div>
 				<div class="row">	
 					<div class="col-md-4">
-						Turma: ${matricula.turma.codigo} 
-					</div>			
-					<div class="col-md-4">
-						${matricula.turma.horaInicioAula} - ${matricula.turma.horaFimAula}
+						Turma: ${matricula.turma.codigo} &nbsp &nbsp &nbsp ${matricula.turma.horaInicioAula} - ${matricula.turma.horaFimAula} &nbsp &nbsp &nbsp ${matricula.turma.diasAulas}
 					</div>
-					<div class="col-md-4">
-						${matricula.turma.diasAulas}
-					</div></div>
+				</div>
 				<div class="row">
 					<div class="col-md-12">
 						Atendido(a) por: ${matricula.atendente}
@@ -100,7 +88,7 @@
 				<br/><br/><br/><br/>
 				
 				<div class="row">
-					<div class="col-md-12" style="padding-left: 105px">
+					<div class="col-md-12 text-center">
 						Luís Gomes - RN,   
 						<script language="javascript">
 							document.write(DiaExtenso());
@@ -111,12 +99,12 @@
 				<br/><br/>
 				
 				<div class="row">
-					<div class="col-md-12" style="padding-left: 90px">
+					<div class="col-md-12 text-center">
 						________________________________________
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12" style="padding-left: 200px">
+					<div class="col-md-12 text-center">
 						Atendente
 					</div>
 				</div>
@@ -124,12 +112,12 @@
 				<br/><br/>
 								
 				<div class="row">
-					<div class="col-md-12" style="padding-left: 60px">
+					<div class="col-md-12 text-center">
 						____________________________________________________
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12" style="padding-left: 170px">
+					<div class="col-md-12 text-center">
 						Aluno(a) ou responsável
 					</div>
 				</div>
