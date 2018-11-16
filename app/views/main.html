@@ -17,11 +17,6 @@
 		<link href="@{'/public/build/css/custom.min.css'}" rel="stylesheet">
 		<!-- Style local -->
 		<link href="@{'/public/stylesheets/main.css'}" rel="stylesheet">
-			
-		<!-- PNotify 
-	    <link href="@{'/public/vendors/pnotify/dist/pnotify.css'}" rel="stylesheet">
-	    <link href="@{'/public/vendors/pnotify/dist/pnotify.buttons.css'}" rel="stylesheet">
-	    <link href="@{'/public/vendors/pnotify/dist/pnotify.nonblock.css'}" rel="stylesheet">	-->
 				
 		<!-- Datatables -->
 	    <link href="@{'/public/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css'}" rel="stylesheet">
@@ -196,13 +191,15 @@
 		        <div class="right_col" role="main">
 		        	<div class="">
 						#{if flash.success}
-						<div class="alert alert-success" style="margin-top: 55px" role="alert">
-							<p>${flash.success.raw()}</p>
-						</div>
-						#{/if} #{if flash.error}
-						<div class="alert alert-danger" style="margin-top: 55px" role="alert">
-							<p>${flash.error.raw()}</p>
-						</div>
+							<div id="alert" class="alert alert-success" style="margin-top: 55px">
+								<a href="#" class="close" data-dismiss="alert">&times;</a>
+								<strong>Sucesso! </strong>${flash.success.raw()}
+							</div>
+						#{/if} #{if flash.error}						
+							<div id="alertError" class="alert alert-danger" style="margin-top: 55px">
+								<a href="#" class="close" data-dismiss="alert">&times;</a>
+								<strong>Erro! </strong>${flash.error.raw()}
+							</div>
 						#{/if} 
 						#{doLayout /}						
 						<!-- footer content -->
@@ -322,12 +319,20 @@
 	    <script src="@{'/public/vendors/jquery.hotkeys/jquery.hotkeys.js'}"></script>
 	    <script src="@{'/public/vendors/google-code-prettify/src/prettify.js'}"></script>
 	    
-	        <!-- PNotify 
-	    <script src="@{'/public/vendors/pnotify/dist/pnotify.js'}"></script>
-	    <script src="@{'/public/vendors/pnotify/dist/pnotify.buttons.js'}"></script>
-	    <script src="@{'/public/vendors/pnotify/dist/pnotify.nonblock.js'}"></script>-->
+		<script type="text/javascript">
+			$(document).ready(function () {
+				setTimeout(function (){
+					$('#alert').hide('fade');
+				}, 2000);
+			});
+		</script>
 
 		<script>
+		
+		   $(document).ready(function (){
+	           $('.ui-pnotify').remove();
+	   	   });
+		
 			function t(){
 			console.log(document.getElementById("editor").value);}
 		

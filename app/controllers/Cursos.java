@@ -28,7 +28,7 @@ public class Cursos extends Controller{
 		}else {
 			flash.error("Erro ao cadastrar.");
 		}
-		formCadCurso();
+		detailCurso(curso.id);
 	}
 	
 	public static void listCurso() {

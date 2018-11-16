@@ -15,7 +15,7 @@ body {
     
 @page {
     margin: 0.5cm;
-    size: A4;
+    size: landscape;    
 }
 
 nav, footer, video, audio, object, embed { 
