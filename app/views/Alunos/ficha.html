@@ -8,98 +8,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Ficha</title>
 		<!-- Bootstrap -->
-		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="all">
 		<link href="@{'/public/stylesheets/print/printA4.css'}" rel="stylesheet" media="print">
+		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="print">
 	</head>
 	<body onload="window.print()">	
-		<div class="container body" style="">
-			<div class="main_container">
+		<img alt="Cabeçalho" src="@{'/public/images/cabeca.jpg'}">
+		<div class="container body">
+			<div class="main_container text-uppercase">
+				<h4 class="text-center">Ficha do aluno &nbsp &nbsp &nbsp <img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></h4>
 				<div class="row">
-					<div class="col-md-11">
-						<div class="row">
-							<div class="col-md-2">
-								Código: ${aluno.id}
-							</div>
-							<div class="col-md-4">
-								Nome: ${aluno.nomeAluno}
-							</div>
-							<div class="col-md-3">
-								Apelido: ${aluno.apelido}
-							</div>
-							<div class="col-md-3">
-								Cadastro: ${aluno.dataCadastro}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								Data Nascimento: ${aluno.dataNascimento}
-							</div>
-							<div class="col-md-3">
-								Sexo: #{if aluno.sexo == "M"}
-										Masculino
-									  #{/if}#{else}
-									  	Feminino
-									  #{/else}
-							</div>
-							<div class="col-md-3">
-								Natural: ${aluno.naturalidade}
-							</div>
-							<div class="col-md-3">
-								UF: ${aluno.uf.nome}
-							</div>
-						</div>
-						<div class="row">						
-							<div class="col-md-5">
-								Pai: ${aluno.pai}
-							</div>
-							<div class="col-md-3">
-								Fone: ${aluno.fone}
-							</div>
-							<div class="col-md-4">
-								Endereço: ${aluno.endereco}
-							</div>
-						</div>
-						<div class="row">						
-							<div class="col-md-5">
-								Mãe: ${aluno.mae}
-							</div>
-							<div class="col-md-4">
-								Bairro: ${aluno.bairro}
-							</div>
-							<div class="col-md-3">
-								CEP: ${aluno.cep}
-							</div>
-						</div>		
-					</div>
-					<div class="col-md-1">
-						<span class="input-group-addon"><img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></span> 
-					</div>
-				</div>
-							
-				<div class="row">
-					<div class="col-md-3">
-						Escolaridade: ${aluno.escolaridade.nome}
-					</div>
-					<div class="col-md-4">
-						Cidade: ${aluno.cidade}
-					</div>
-					<div class="col-md-2">
-						UF: ${aluno.uf.nome}
-					</div>
-					<div class="col-md-3">
-						Email: ${aluno.emailAluno}
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						RG: ${aluno.rg}
-					</div>
-					<div class="col-md-3">
-						CPF: ${aluno.cpf}
-					</div>
-					<div class="col-md-6">
-						Observação: ${aluno.observacao}
-					</div>
+					Código: ${aluno.id} &nbsp &nbsp &nbsp Nome: ${aluno.nomeAluno} &nbsp &nbsp &nbsp Nome social: ${aluno.apelido} <br/>
+					Cadastro: ${aluno.dataCadastro} &nbsp &nbsp &nbsp Data Nascimento: ${aluno.dataNascimento} &nbsp &nbsp &nbsp 
+					Sexo: #{if aluno.sexo == "M"} Masculino #{/if}#{else} Feminino #{/else} <br/>
+					Natural: ${aluno.naturalidade} &nbsp &nbsp &nbsp UF: ${aluno.uf.nome} &nbsp &nbsp &nbsp Pai: ${aluno.pai} <br/>
+					Fone: ${aluno.fone} &nbsp &nbsp &nbsp Endereço: ${aluno.endereco} &nbsp &nbsp &nbsp Mãe: ${aluno.mae} <br/>
+					Bairro: ${aluno.bairro} &nbsp &nbsp &nbsp CEP: ${aluno.cep} &nbsp &nbsp &nbsp Observação: ${aluno.observacao}<br/> 
+					Escolaridade: ${aluno.escolaridade.nome} &nbsp &nbsp &nbsp Cidade: ${aluno.cidade} &nbsp &nbsp &nbsp UF: ${aluno.uf.nome} <br/>
+					Email: ${aluno.emailAluno} &nbsp &nbsp &nbsp RG: ${aluno.rg} &nbsp &nbsp &nbsp CPF: ${aluno.cpf} <br/>
+					
 				</div>
 			</div>
 		</div>
