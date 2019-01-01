@@ -1,1 +1,131 @@
 #{extends 'main.html' /} #{set title:'Ajuda' /}
+<meta charset="utf-8">
+        <!-- page content -->
+        <div class="" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Ajuda</h3>
+              </div>
+
+              <!-- <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+<div class="col-md-12 col-sm-6 col-xs-12">
+	<div class="x_panel">
+	  <div class="x_title">
+	    <h2><i class="fa fa-align-left"></i> Ajuda <small>Sessão</small></h2>
+	    <ul class="nav navbar-right panel_toolbox">
+	      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+	      </li>
+	      <!-- <li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+	        <ul class="dropdown-menu" role="menu">
+	          <li><a href="#">Settings 1</a>
+	          </li>
+	          <li><a href="#">Settings 2</a>
+	          </li>
+	        </ul>
+	      </li> -->
+	      <li><a class="close-link"><i class="fa fa-close"></i></a>
+	      </li>
+	    </ul>
+	    <div class="clearfix"></div>
+	  </div>
+	  <div class="x_content">
+	
+	    <!-- start accordion -->
+	   <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+	     <div class="panel">
+	       <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	         <h4 class="panel-title">Sobre</h4>
+	       </a>
+	       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	         <div class="panel-body">
+	         	<h4>
+	         		Esta seção traz algumas informações básicas sobre o sistema, desde listas a cadastros e exclusões.
+	         	</h4>
+	         </div>
+	       </div>
+	     </div>
+	     <div class="panel">
+	       <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	         <h4 class="panel-title">Acesso à listas e cadastros</h4>
+	       </a>
+	       <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	         <div class="panel-body">
+	         	<h4>
+	         		Para listar as entidades cadastradas no sistema (alunos, professores, turmas e cursos), na barra lateral, basta clicar na respectiva entidade e aparecerá duas opções: "Lista" e "Cadastro", basta clicar na opção desejada para o acesso, como mostra a imagem:
+	         	</h4>
+	         	<img alt="Listas e cadastros" src="@{'/public/images/ajuda/a.png'}" class="img-responsive">
+	         </div>
+	       </div>
+	     </div>
+	     <div class="panel">
+	       <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+	         <h4 class="panel-title">Cadastro de alunos</h4>
+	       </a>
+	       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	         <div class="panel-body">
+	         	<h4>
+	         		Para efetuar o cadastro de um aluno, depois de entrar na página de cadastro, é necessário preencher os dados, caso seja necessário foto, clicar no botão "Foto" na barra de botões localizada no lado inferior da tela para a seleção da foto. Logo depois basta clicar no botão "Salvar", como ilustrado na imagem: 
+	         	</h4>
+	         	<img alt="Cadastro de alunos" src="@{'/public/images/ajuda/b.png'}" class="img-responsive">
+	         </div>
+	       </div>
+	     </div>
+	     <div class="panel">
+	       <a class="panel-heading collapsed" role="tab" id="headingFour" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+	         <h4 class="panel-title">Efetuar matricula</h4>
+	       </a>
+	       <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+	         <div class="panel-body">
+	         	<h4>
+	         		Para efetuar a matricula de um aluno, basta ir na lista de alunos e no respectivo aluno, detalhar suas informações, como ilustrado na figura: 
+	         	</h4>
+	         	<img alt="Detalhar" src="@{'/public/images/ajuda/c.png'}" class="img-responsive">
+	         	<h4>
+	         		Na barra de botões na parte inferior da tela clique em “Matricula”. Após isso, o sistema abrirá uma janela onde poderá ser escolhido o curso e a turma específicos, mostrando importantes dados referentes ao curso escolhido. Para concluir, basta clicar em salvar:
+	         	</h4>
+	         	<img alt="Tela de matricula" src="@{'/public/images/ajuda/d.png'}" class="img-responsive">
+	         </div>
+	       </div>
+	     </div>
+	     <div class="panel">
+	       <a class="panel-heading collapsed" role="tab" id="headingFive" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+	         <h4 class="panel-title">Exclusões</h4>
+	       </a>
+	       <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+	         <div class="panel-body">
+	         	<h4>
+	         		Para realizar qualquer exclusão no sistema, basta clicar no botão excluir e informar a senha de exclusão. Segue o exemplo da exclusão de matricula:
+	         	</h4>
+	         	<img alt="Cadastro de alunos" src="@{'/public/images/ajuda/e.png'}" class="img-responsive">
+	         </div>
+	       </div>
+	     </div>
+	   </div>
+	   <!-- end of accordion -->
+	
+	
+	    </div>
+	  </div>
+	</div>
+	</div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        
