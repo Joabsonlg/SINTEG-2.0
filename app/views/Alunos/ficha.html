@@ -8,24 +8,56 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Ficha</title>
 		<!-- Bootstrap -->
-		<link href="@{'/public/stylesheets/print/printA4.css'}" rel="stylesheet" media="print">
-		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="print">
+		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="all">
 	</head>
 	<body onload="window.print()">	
 		<img alt="Cabeçalho" src="@{'/public/images/cabeca.jpg'}">
 		<div class="container body">
-			<div class="main_container text-uppercase">
-				<h4 class="text-center">Ficha do aluno &nbsp &nbsp &nbsp <img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></h4>
+			<div class="main_container">
+				<h3 class="text-center">Ficha do aluno </h3>
 				<div class="row">
-					Código: ${aluno.id} &nbsp &nbsp &nbsp Nome: ${aluno.nomeAluno} &nbsp &nbsp &nbsp Nome social: ${aluno.apelido} <br/>
-					Cadastro: ${aluno.dataCadastro} &nbsp &nbsp &nbsp Data Nascimento: ${aluno.dataNascimento} &nbsp &nbsp &nbsp 
-					Sexo: #{if aluno.sexo == "M"} Masculino #{/if}#{else} Feminino #{/else} <br/>
-					Natural: ${aluno.naturalidade} &nbsp &nbsp &nbsp UF: ${aluno.uf.nome} &nbsp &nbsp &nbsp Pai: ${aluno.pai} <br/>
-					Fone: ${aluno.fone} &nbsp &nbsp &nbsp Endereço: ${aluno.endereco} &nbsp &nbsp &nbsp Mãe: ${aluno.mae} <br/>
-					Bairro: ${aluno.bairro} &nbsp &nbsp &nbsp CEP: ${aluno.cep} &nbsp &nbsp &nbsp Observação: ${aluno.observacao}<br/> 
-					Escolaridade: ${aluno.escolaridade.nome} &nbsp &nbsp &nbsp Cidade: ${aluno.cidade} &nbsp &nbsp &nbsp UF: ${aluno.uf.nome} <br/>
-					Email: ${aluno.emailAluno} &nbsp &nbsp &nbsp RG: ${aluno.rg} &nbsp &nbsp &nbsp CPF: ${aluno.cpf} <br/>
-					
+					<table class="table table-striped">
+						<tr>
+							<td><b>Código:</b> ${aluno.id}</td>
+							<td><b>Nome:</b> ${aluno.nomeAluno}</td>
+							<td><b>Nome</b> social: ${aluno.apelido}</td>
+							<td rowspan="2"><img src="@{Alunos.userPhoto(aluno?.id)}" name="prev" style="width: 95px; height: 127px;"></td>
+						</tr>
+						<tr>
+							<td><b>Cadastro:</b> ${aluno.dataCadastro}</td>
+							<td><b>Nascimento:</b> ${aluno.dataNascimento}</td>
+							<td><b>Sexo:</b> #{if aluno.sexo == "M"} Masculino #{/if}#{else} Feminino #{/else}</td>
+						</tr>
+					</table>
+					<table class="table table-striped">
+						<tr>
+							<td><b>Natural:</b> ${aluno.naturalidade}</td>
+							<td><b>UF:</b> ${aluno.uf.nome}</td>
+							<td><b>Pai:</b> ${aluno.pai}</td>
+							<td><b>Fone:</b> ${aluno.fone}</td>
+						</tr>
+						<tr>
+							<td><b>Endereço:</b> ${aluno.endereco}</td>
+							<td><b>Mãe:</b> ${aluno.mae}</td>
+							<td><b>Bairro:</b> ${aluno.bairro}</td>
+							<td><b>CEP:</b> ${aluno.cep}</td>
+						</tr>
+						<tr>
+							<td><b>Escolaridade:</b> ${aluno.escolaridade.nome}</td>
+							<td><b>Cidade:</b> ${aluno.cidade}</td>
+							<td><b>UF:</b> ${aluno.uf.nome}</td>
+							<td><b>Email:</b> ${aluno.emailAluno}</td>
+						</tr>
+						<tr>
+							<td><b>RG:</b> ${aluno.rg}</td>
+							<td><b>CPF:</b> ${aluno.cpf}</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="4"><b>Observação:</b> ${aluno.observacao}</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
