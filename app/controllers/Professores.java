@@ -36,10 +36,17 @@ public class Professores extends Controller{
 	//@Administrador
 	public static void cadProfessor(Professor professor) {
 		if(professor.save() != null) {
+			flash.success(professor.nomeProfessor + " registrado");
 			detailProfessor(professor.id);
 		}else {
+			flash.error("Erro ao cadastrar.");
 			formCadProfessor();
 		}
+	}
+	
+	public static void ficha(Long id) {
+		Professor prof = Professor.findById(id);
+		render(prof);
 	}
 	
 	public static void listProfessor() {

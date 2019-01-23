@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="author" content="Joabson Arley">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Ficha</title>
+		<!-- Bootstrap -->
+		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="all">
+	</head>
+	<body onload="window.print()">	
+		<img alt="Cabeçalho" src="@{'/public/images/cabeca.jpg'}">
+		<div class="container body">
+			<div class="main_container">
+				<h3 class="text-center">Ficha do professor</h3>
+				<div class="row">
+					<table class="table table-striped">
+						<tr>
+							<td><b>Código:</b> ${prof.id}</td>
+							<td><b>Nome:</b> ${prof.nomeProfessor}</td>
+							<td><b>Username</b> ${prof.username}</td>
+							<td rowspan="2"><img src="@{Professores.userPhoto(prof?.id)}" name="prev" style="width: 95px; height: 127px;"></td>
+						</tr>
+						<tr>
+							<td><b>UF:</b> ${prof.uf.nome}</td>
+							<td><b>Cidade:</b> ${prof.cidade}</td>
+							<td><b>E-mail:</b> ${prof.emailProfessor}</td>
+						</tr>
+					</table>
+					<table class="table table-striped">
+						<tr>
+							<td><b>Bairro:</b> ${prof.bairro}</td>
+							<td><b>Rua</b> ${prof.endereco}</td>
+							<td><b>Pai:</b> ${prof.pai}</td>
+							<td><b>Mãe:</b> ${prof.mae}</td>
+						</tr>
+						<tr>
+							<td><b>Escolaridade:</b> ${prof.escolaridade.nome}</td>
+							<td><b>CPF:</b> ${prof.cpf}</td>
+							<td><b>RG/C.N:</b> ${prof.rg}</td>
+							<td><b>Gênero:</b> ${}</td>
+						</tr>
+						<tr>
+							<td><b>UF:</b> ${prof.ufNasc.nome}</td>
+							<td><b>Natural:</b> ${prof.naturalidade}</td>
+							<td><b>Fone:</b> ${prof.fone}</td>
+							<td><b>Aniversário:</b> ${prof.dataNascimento}</td>
+						</tr>
+						<tr>
+							<td><b>CEP:</b> ${prof.cep}</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="4"><b>Observação:</b> ${prof.observacao}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

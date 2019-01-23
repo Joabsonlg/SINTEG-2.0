@@ -1,4 +1,4 @@
-#{extends 'main.html' /} #{set title:'Cadastro de Professor' /}
+#{extends 'main.html' /} #{set title:'Professor' /}
 <meta charset="utf-8">
 <div class="page-title">
 	<div class="title_left">
@@ -255,8 +255,8 @@
 								<a data-toggle="modal" data-target="#excluirProfessor" class="btn btn-danger">
 									<span class="fa fa-trash"></span> Excluir
 								</a>
-								<a class="btn btn-primary" target="_blank" href="#">
-									<span class="fa fa-print"></span> Imprimir
+								<a class="btn btn-primary" target="_blank" href="@{Professores.ficha(professor.id)}">
+									<span class="fa fa-print"></span> Ficha
 								</a>
 							#{/if}#{else}
 								<button type="button" class="btn btn-danger" disabled="disabled">
