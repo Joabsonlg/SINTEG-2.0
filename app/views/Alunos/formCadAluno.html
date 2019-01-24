@@ -168,7 +168,7 @@
   						        
 						    </div>
 						</div>						
-					</div>					
+					</div>				
 					
 					<div class="row">	
 						<div class="col-md-4 col-sm-4 col-xs-12 form-group">
@@ -244,7 +244,6 @@
 							</div>
 						</div>
 					</div>
-					
 					#{if aluno?.id != null}					
 						<div class="ln_solid"></div>
 						<table id="datatable" class="table table-striped table-bordered">
@@ -267,11 +266,12 @@
 					                    	<td>${matricula.dataMatricula}</td>	
 					                    	<td>${matricula.turma.curso.nomeCurso}</td>
 					                    	<td>${matricula.turma.codigo}</td>
-					                    	<td></td>
-					                    	<td></td>
-					                    	<td></td>
+					                    	<td>${matricula?.termino}</td>
+					                    	<td>${matricula?.motivo}</td>
+					                    	<td>${matricula?.entregaC}</td>
 											<td class="text-center">
-												<input type="button" class="btn btn-primary btn-sm" id="" data-toggle="modal" data-target="#matricula" value="Detalhar">
+												<a href="" class="btn btn-primary btn-sm" target="_blank">Emitir Cert.</a>
+												<!-- <input type="button" class="btn btn-primary btn-sm" id="" data-toggle="modal" data-target="#matricula" value="Detalhar"> -->
 												<a href="@{Alunos.comprovante(matricula?.id)}" target="_blank" class="btn btn-primary btn-sm">
 													<i class="fa fa-print"> Compr.</i>
 												</a>
@@ -291,10 +291,8 @@
 					
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<a class="btn btn-primary" href="@{Alunos.formCadAluno()}"><i class="fa fa-eraser" aria-hidden="true"></i>
-							 Limpar</a>
+							<a class="btn btn-primary" href="@{Alunos.formCadAluno()}"><i class="fa fa-eraser" aria-hidden="true"></i>Limpar</a>
 							<button type="submit" class="btn btn-primary"><span class="fa fa-hdd-o"></span> Salvar</button>
-							<!-- <input type="file" class="btn btn-success fa fa-upload"> -->
 							#{if aluno?.id != null}
 								<a data-toggle="modal" data-target="#excluirAluno" class="btn btn-danger">
 									<span class="fa fa-trash"></span> Excluir
@@ -528,6 +526,7 @@
     </div>
   </div>
 </div>
+
 
 
 <script>

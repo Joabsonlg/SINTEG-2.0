@@ -18,7 +18,6 @@ import play.mvc.*;
 public class Matriculas extends Controller {
 	
 	public static void addMatricula(Matricula matricula) throws ParseException {
-
 		
 		Calendar dateOfBirth = new GregorianCalendar();
 		dateOfBirth.setTime(matricula.aluno.dataNascimento);
@@ -55,7 +54,9 @@ public class Matriculas extends Controller {
 			e.printStackTrace();
 		}
 		matricula.horaMatricula = h;
-		
+		if(matricula.entregaC == null) {
+			matricula.entregaC = "Não emitido"; 
+		}
 		matricula.save();
 		flash.success("Matricula realizada");
 		Alunos.detailAluno(matricula.aluno.id);

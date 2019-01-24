@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.cache.spi.UpdateTimestampsCache;
+
 import models.*;
 import play.db.jpa.Blob;
 import play.mvc.Controller;
@@ -23,10 +25,23 @@ public class Turmas extends Controller{
 		render(cursos, profs, salas);
 	}
 	
-	public static void encerraTurma(Long id) {
+	public static void encerraTurma(Long id) throws ParseException {
 		Turma turma = Turma.findById(id);
 		turma.estado = true;
 		turma.save();
+		List<Matricula> mats = Matricula.find("turma.id = ?", turma.id).fetch();
+		Date dataTermino = null;
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		Date d = new Date();
+		String dStr = DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+		dataTermino = formato.parse(dStr);		
+		for (Matricula matricula : mats) {
+			if(matricula.motivo == null && matricula.termino == null) {
+				matricula.motivo = "Conclusão do curso";
+				matricula.termino = dataTermino;
+			}
+			matricula.save();
+		}
 		detailTurma(id);
 	}
 	
