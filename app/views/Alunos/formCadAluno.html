@@ -271,7 +271,7 @@
 					                    	<td></td>
 					                    	<td></td>
 											<td class="text-center">
-												<input type="button" class="btn btn-primary btn-sm" id="mat" data-toggle="modal" data-target="#matricula" value="Detalhar">
+												<input type="button" class="btn btn-primary btn-sm" id="" data-toggle="modal" data-target="#matricula" value="Detalhar">
 												<a href="@{Alunos.comprovante(matricula?.id)}" target="_blank" class="btn btn-primary btn-sm">
 													<i class="fa fa-print"> Compr.</i>
 												</a>
@@ -293,7 +293,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<a class="btn btn-primary" href="@{Alunos.formCadAluno()}"><i class="fa fa-eraser" aria-hidden="true"></i>
 							 Limpar</a>
-							<button type="submit" id="btnSave" class="btn btn-primary"><span class="fa fa-hdd-o"></span> Salvar</button>
+							<button type="submit" class="btn btn-primary"><span class="fa fa-hdd-o"></span> Salvar</button>
 							<!-- <input type="file" class="btn btn-success fa fa-upload"> -->
 							#{if aluno?.id != null}
 								<a data-toggle="modal" data-target="#excluirAluno" class="btn btn-danger">
