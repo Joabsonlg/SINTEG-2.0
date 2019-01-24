@@ -36,6 +36,11 @@ public class Cursos extends Controller{
 		render(cursos);
 	}
 	
+	public static void printCursos() {
+		List<Curso> cursos = Curso.findAll();
+		render(cursos);
+	}
+	
 	public static void removeCurso(Long id) {
 		Curso c = Curso.findById(id);
 		c.delete();

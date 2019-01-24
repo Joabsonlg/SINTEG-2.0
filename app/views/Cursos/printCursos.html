@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="author" content="Joabson Arley">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cursos</title>
+		<!-- Bootstrap -->
+		<link href="@{'/public/vendors/bootstrap/dist/css/bootstrap.min.css'}" rel="stylesheet" media="all">
+	</head>
+	<body onload="window.print()">	
+		<img alt="Cabeçalho" src="@{'/public/images/cabeca.jpg'}">
+		<div class="container body">
+			<div class="main_container">
+				<h3 class="text-center">Cursos</h3>
+				<div class="row">
+					<table class="table table-striped">
+						<thead>
+	                    	<tr>
+	                          <th>Código</th>
+	                          <th>Nome</th>
+	                          <th>Idade</th>
+	                          <th>Carga Horária</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                      	#{list cursos, as:'curso'}                       
+		                        <tr>
+		                          <td>${curso.id}</td>
+		                          <td>${curso.nomeCurso}</td>
+		                          <td>${curso.idadeMinima} - ${curso.idadeMaxima}</td>
+		                          <td>${curso.cargaHoraria}</td>
+		                        </tr>
+	                        #{/list}
+	                	</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

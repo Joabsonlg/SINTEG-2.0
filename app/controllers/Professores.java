@@ -1,8 +1,13 @@
 package controllers;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import models.*;
@@ -44,7 +49,7 @@ public class Professores extends Controller{
 		}
 	}
 	
-	public static void ficha(Long id) {
+	public static void ficha(Long id) throws ParseException {
 		Professor prof = Professor.findById(id);
 		render(prof);
 	}

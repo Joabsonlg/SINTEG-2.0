@@ -42,6 +42,7 @@
                           <th>Código</th>
                           <th>Nome</th>
                           <th>Idade</th>
+                          <th>Carga Horária</th>
                           <th>Ações</th>
                         </tr>
                       </thead>
@@ -51,6 +52,7 @@
 	                          <td>${curso.id}</td>
 	                          <td>${curso.nomeCurso}</td>
 	                          <td>${curso.idadeMinima} - ${curso.idadeMaxima}</td>
+	                          <td>${curso.cargaHoraria}</td>
 	                          <td>
 	                          	<a href="@{Cursos.detailCurso(curso?.id)}" class="btn btn-default btn-sm">Detalhar</a>
 	                          </td>
@@ -58,6 +60,7 @@
                         #{/list}
                       </tbody>
                     </table>
+                    <a href="@{Cursos.printCursos()}" target="_blank" class="btn btn-dark btn-sm">Imprimir</a>
                   </div>
                 </div>
               </div>

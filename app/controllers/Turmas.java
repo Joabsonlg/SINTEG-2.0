@@ -30,6 +30,11 @@ public class Turmas extends Controller{
 		detailTurma(id);
 	}
 	
+	public static void printTurmas() {
+		List<Turma> turmas = Turma.findAll();
+		render(turmas);
+	}
+	
 	public static void cadTurma(Turma turma){	
 		/*if(turma.periodo == null) {
 			//flash.error("Erro ao cadastrar! Existem dependências a serem resolvidas. Provavelmente recadastramento de outras entidades.");

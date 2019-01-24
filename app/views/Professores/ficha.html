@@ -20,19 +20,19 @@
 						<tr>
 							<td><b>Código:</b> ${prof.id}</td>
 							<td><b>Nome:</b> ${prof.nomeProfessor}</td>
-							<td><b>Username</b> ${prof.username}</td>
+							<td><b>E-mail:</b> ${prof.emailProfessor}</td>
 							<td rowspan="2"><img src="@{Professores.userPhoto(prof?.id)}" name="prev" style="width: 95px; height: 127px;"></td>
 						</tr>
 						<tr>
 							<td><b>UF:</b> ${prof.uf.nome}</td>
 							<td><b>Cidade:</b> ${prof.cidade}</td>
-							<td><b>E-mail:</b> ${prof.emailProfessor}</td>
+							<td><b>CEP:</b> ${prof.cep}</td>
 						</tr>
 					</table>
 					<table class="table table-striped">
 						<tr>
 							<td><b>Bairro:</b> ${prof.bairro}</td>
-							<td><b>Rua</b> ${prof.endereco}</td>
+							<td><b>Rua:</b> ${prof.endereco}</td>
 							<td><b>Pai:</b> ${prof.pai}</td>
 							<td><b>Mãe:</b> ${prof.mae}</td>
 						</tr>
@@ -40,19 +40,13 @@
 							<td><b>Escolaridade:</b> ${prof.escolaridade.nome}</td>
 							<td><b>CPF:</b> ${prof.cpf}</td>
 							<td><b>RG/C.N:</b> ${prof.rg}</td>
-							<td><b>Gênero:</b> ${}</td>
+							<td><b>Gênero:</b> #{if prof.sexo == "M"} Masculino #{/if}#{else} Feminino #{/else}</td>
 						</tr>
 						<tr>
 							<td><b>UF:</b> ${prof.ufNasc.nome}</td>
 							<td><b>Natural:</b> ${prof.naturalidade}</td>
 							<td><b>Fone:</b> ${prof.fone}</td>
 							<td><b>Aniversário:</b> ${prof.dataNascimento}</td>
-						</tr>
-						<tr>
-							<td><b>CEP:</b> ${prof.cep}</td>
-							<td></td>
-							<td></td>
-							<td></td>
 						</tr>
 						<tr>
 							<td colspan="4"><b>Observação:</b> ${prof.observacao}</td>

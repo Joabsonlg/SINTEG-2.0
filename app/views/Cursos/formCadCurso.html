@@ -95,6 +95,7 @@
                          <th>Código</th>
                          <th>Nome</th>
                          <th>Idade</th>
+                         <th>Carga horária</th>
                          <th>Ações</th>
                        </tr>
                      </thead>
@@ -104,6 +105,7 @@
                           <td>${cursoL.id}</td>
                           <td>${cursoL.nomeCurso}</td>
                           <td>${cursoL.idadeMinima} - ${cursoL.idadeMaxima}</td>
+	                      <td>${curso.cargaHoraria}</td>
                           <td>
                           	<a href="@{Cursos.detailCurso(cursoL?.id)}" class="btn btn-default btn-sm">Detalhar</a>
                           </td>
