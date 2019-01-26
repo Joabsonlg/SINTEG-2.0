@@ -266,18 +266,39 @@
 					                    	<td>${matricula.dataMatricula}</td>	
 					                    	<td>${matricula.turma.curso.nomeCurso}</td>
 					                    	<td>${matricula.turma.codigo}</td>
-					                    	<td>${matricula?.termino}</td>
+					                    	<td class="text-center">
+					                    		${matricula?.termino}
+					                    	</td>
 					                    	<td>${matricula?.motivo}</td>
 					                    	<td>${matricula?.entregaC}</td>
 											<td class="text-center">
-												<a href="" class="btn btn-primary btn-sm" target="_blank">Emitir Cert.</a>
+												<div class="input-group-btn">
+					                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Ações <span class="caret"></span>
+					                              </button>
+					                              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+					                                <li>
+														<a href="@{Alunos.comprovante(matricula?.id)}" target="_blank" class="">
+															<i class="fa fa-print"> Compr.</i>
+														</a>
+					                                </li>
+					                                <li>
+														<a onclick="pegaid(${matricula?.id})" data-toggle="modal" data-target="#excluirMatricula" class="">
+															<span class="fa fa-trash"> Excluir</span>
+														</a>
+					                                </li>
+					                                <li>
+														<a href="" class="" target="_blank">
+															<i class="fa fa-certificate"> Emitir Cert.</i>
+														</a>
+					                                </li>
+					                                <li>
+						                    			<a data-toggle="modal" data-target="#encerrarMatricula" class="">
+															<span class="fa fa-ban"> Encerrar</span>
+														</a>
+					                                </li>
+					                              </ul>
+					                            </div>
 												<!-- <input type="button" class="btn btn-primary btn-sm" id="" data-toggle="modal" data-target="#matricula" value="Detalhar"> -->
-												<a href="@{Alunos.comprovante(matricula?.id)}" target="_blank" class="btn btn-primary btn-sm">
-													<i class="fa fa-print"> Compr.</i>
-												</a>
-												<a onclick="pegaid(${matricula?.id})" data-toggle="modal" data-target="#excluirMatricula" class="btn btn-danger btn-sm">
-													<span class="fa fa-trash"> Excluir</span>
-												</a>
 											</td>
 					                	</tr>				 
 									#{/list}
@@ -418,6 +439,31 @@
 	      <div class="modal-body">
 			<h5>Realmente deseja Continuar?</h5>
 			<p>Informe a senha para remover a matricula:</p>
+			<input type="hidden" name="id" id="idM">			
+			<input type="password" name="senhaPadrao" required="required" class="form-control input-group-sm" placeholder="Digite a senha">
+	      </div>
+	      <div class="modal-footer">
+	      	<input type="submit" class="btn btn-danger" value="Excluir">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i>
+	         Close</button>
+	      </div>
+		</form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="encerrarMatricula" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+		<form method="post" action="">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+	        </button>
+	        <h4 class="modal-title" id="myModalLabel">Encerrar matricula</h4>
+	      </div>
+	      <div class="modal-body">
+			<h5>Realmente deseja Continuar?</h5>
+			<p>Informe a senha para encerrar a matricula:</p>
 			<input type="hidden" name="id" id="idM">			
 			<input type="password" name="senhaPadrao" required="required" class="form-control input-group-sm" placeholder="Digite a senha">
 	      </div>
