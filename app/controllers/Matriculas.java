@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import models.*;
@@ -34,12 +35,32 @@ public class Matriculas extends Controller {
 			flash.error("O Aluno não possui idade adequada para este curso.");
 			Alunos.detailAluno(matricula.aluno.id);
 		}
-		
+		Matricula m = Matricula.find("turma.id = ? and aluno.id = ?", matricula.turma.id, matricula.aluno.id).first();
+		if(m != null) {
+			flash.error("O Aluno já está matriculado nesta turma.");
+			Alunos.detailAluno(matricula.aluno.id);
+		}
+		Matricula m2 = Matricula.find("aluno.id = ? and turma.estado = ?", matricula.aluno.id, false).first();
+		if(m2 != null) {
+			flash.error("O Aluno já está matriculado na turma: "+ m2.turma.codigo+". Para matricula-lo em outra turma, encerre a matricula em andamento.");
+			Alunos.detailAluno(matricula.aluno.id);
+		}
 		
 		Turma turma = Turma.findById(matricula.turma.id);
 		matricula.atendente = session.get("user");
-		pegaData(matricula);
-		matricula.save();
+		
+		
+		SimpleDateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Date d = new Date();
+		Locale.setDefault(new Locale("pt", "BR"));
+		String dF = DateFormat.getDateInstance().format(d);
+		
+		//String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+		Date dataCadastro = formato1.parse(dF);
+		
+		matricula.dataMatricula = dataCadastro;
+		
 		diminuirVaga(turma);
 		//verEstado(turma);
 		turma.qtde += 1;
@@ -100,9 +121,14 @@ public class Matriculas extends Controller {
 	
 	public static Date pegaData(Matricula matricula) throws ParseException {
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		
 		Date d = new Date();
-		String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
-		Date dataCadastro = formato.parse(dStr);
+		Locale.setDefault(new Locale("pt", "BR"));
+		String dF = DateFormat.getDateInstance().format(d);
+		
+		//String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+		Date dataCadastro = formato.parse(dF);
+		
 		return matricula.dataMatricula = dataCadastro;
 	}	
 
