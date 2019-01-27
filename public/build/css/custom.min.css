@@ -175,7 +175,7 @@
 
 .nav-sm .container.body .col-md-3.left_col {
 	min-height: 100%;
-	width: 70px;
+	width: 80px;
 	padding: 0;
 	z-index: 9999;
 	position: absolute
@@ -207,7 +207,7 @@
 }
 
 .nav-sm .navbar.nav_title {
-	width: 70px
+	width: 80px
 }
 
 .nav-sm .navbar.nav_title a span {
@@ -271,9 +271,7 @@
 
 .nav-sm ul.nav.child_menu {
 	left: 100%;
-	position: absolute;
 	top: 0;
-	width: 210px;
 	z-index: 4000;
 	background: #3E5367;
 	display: none

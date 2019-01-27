@@ -154,6 +154,25 @@ public class Matriculas extends Controller {
 		}	
 		Alunos.detailAluno(m.aluno.id);	
 	}
+	
+	public static void encerraMatricula(Long id, String senhaPadrao, String motivo) throws ParseException {
+		Setting setting = Setting.findById((long) 1);
+		Matricula m = Matricula.findById(id);
+		if(senhaPadrao.equals(setting.senhaPadrao)) {
+			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");			
+			Date d = new Date();
+			Locale.setDefault(new Locale("pt", "BR"));
+			String dF = DateFormat.getDateInstance().format(d);
+			Date data = formato.parse(dF);
+			m.termino = data;
+			m.motivo = motivo;
+			m.save();
+			flash.success("Matricula encerrada");
+		}else {
+			flash.error("Senha incorreta, tente novamente.");
+		}	
+		Alunos.detailAluno(m.aluno.id);	
+	}
 
 	public static void editMatricula() {
 	}
